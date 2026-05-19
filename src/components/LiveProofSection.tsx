@@ -6,9 +6,11 @@ const LIVE_POSTER_SRC = '/live-poster.jpg';
 
 const LiveProofSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [hasVideoError, setHasVideoError] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const shouldPlayVideo = isInView && !prefersReducedMotion && !hasVideoError;
 
@@ -43,6 +45,21 @@ const LiveProofSection = () => {
     window.open(MESSENGER_URL, '_blank', 'noopener,noreferrer');
   };
 
+  const handleToggleMute = () => {
+    setIsMuted((currentMuted) => {
+      const nextMuted = !currentMuted;
+
+      if (videoRef.current) {
+        videoRef.current.muted = nextMuted;
+        if (!nextMuted) {
+          void videoRef.current.play();
+        }
+      }
+
+      return nextMuted;
+    });
+  };
+
   return (
     <section ref={sectionRef} className="py-12 md:py-16 px-4 bg-gradient-to-b from-white via-red-50 to-white">
       <div className="max-w-5xl mx-auto">
@@ -62,9 +79,10 @@ const LiveProofSection = () => {
               <div className="relative aspect-[9/16] bg-gray-900">
                 {shouldPlayVideo ? (
                   <video
+                    ref={videoRef}
                     className="h-full w-full object-cover"
                     autoPlay
-                    muted
+                    muted={isMuted}
                     loop
                     playsInline
                     preload="none"
@@ -79,6 +97,19 @@ const LiveProofSection = () => {
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
+                )}
+
+                {shouldPlayVideo && (
+                  <button
+                    type="button"
+                    onClick={handleToggleMute}
+                    className="absolute right-3 top-3 flex min-h-11 items-center gap-2 rounded-full bg-black/55 px-3.5 py-2 text-sm font-bold text-white shadow-lg ring-1 ring-white/20 backdrop-blur-md transition hover:bg-black/70 active:scale-95"
+                    aria-label={isMuted ? 'เปิดเสียงวิดีโอ' : 'ปิดเสียงวิดีโอ'}
+                    aria-pressed={!isMuted}
+                  >
+                    <span className="text-lg leading-none">{isMuted ? '🔇' : '🔊'}</span>
+                    <span>{isMuted ? 'เปิดเสียง' : 'ปิดเสียง'}</span>
+                  </button>
                 )}
 
                 {!shouldPlayVideo && prefersReducedMotion && (
