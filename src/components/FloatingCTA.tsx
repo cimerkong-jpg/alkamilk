@@ -25,32 +25,24 @@ const FloatingCTA = () => {
       <div className="fixed bottom-20 right-4 z-50">
         <button
           onClick={handleMessengerClick}
-          className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-red-700 text-white shadow-2xl shadow-red-600/35 ring-8 ring-red-500/14 transition hover:scale-105 hover:shadow-red-600/45 active:scale-95"
+          className="group relative flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#0084FF] text-white shadow-[0_8px_24px_rgba(0,132,255,0.35)] ring-8 ring-[#0084FF]/12 transition hover:scale-105 hover:bg-[#0078E8] active:scale-95"
           aria-label="ทักแชท Messenger เพื่อรับโปรโมชั่น"
         >
-          <span className="absolute inset-0 rounded-full bg-red-500/35 animate-ping"></span>
-          <span className="absolute inset-1 rounded-full bg-white/10"></span>
+          <span className="absolute inset-0 rounded-full bg-[#0084FF]/25 animate-ping"></span>
           <svg
-            viewBox="0 0 24 24"
+            viewBox="0 0 36 36"
             aria-hidden="true"
-            className="relative h-8 w-8"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
+            className="relative h-9 w-9"
+            fill="currentColor"
           >
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" />
-            <path d="M8.5 12h.01" />
-            <path d="M12 12h.01" />
-            <path d="M15.5 12h.01" />
+            <path d="M18 3.6C9.8 3.6 3.4 9.6 3.4 17.7c0 4.2 1.7 7.8 4.6 10.3v5.1l5-2.8c1.6.5 3.2.8 5 .8 8.2 0 14.6-6 14.6-14.1S26.2 3.6 18 3.6Zm1.4 18.9-3.7-4-7.2 4 7.9-8.4 3.8 4 7.1-4-7.9 8.4Z" />
           </svg>
 
-          <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-xs font-black text-white shadow-lg ring-2 ring-white">
+          <span className="absolute -right-0.5 -top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#FF3B30] text-[11px] font-black text-white shadow-lg ring-2 ring-white">
             1
           </span>
 
-          <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-gray-950 px-4 py-2 text-sm font-bold text-white opacity-0 shadow-xl transition group-hover:opacity-100 md:block">
+          <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm font-bold text-gray-900 opacity-0 shadow-xl ring-1 ring-black/5 transition group-hover:opacity-100 md:block">
             ทักแชทรับโปร 4 แถม 2
           </span>
         </button>
