@@ -81,14 +81,16 @@ const HeroSection = () => {
           {/* Right: Visual - Clean & Prominent */}
           <div className="order-1 md:order-2 relative px-2 md:px-0">
             {/* Product Image - Clean Frame */}
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-red-100 via-amber-100 to-red-100 rounded-2xl shadow-xl flex items-center justify-center overflow-hidden border border-white/50">
+            <div className="relative max-w-sm mx-auto md:max-w-none">
+              <div className="aspect-[2/3] bg-gradient-to-br from-red-100 via-amber-100 to-red-100 rounded-2xl shadow-xl overflow-hidden border border-white/50">
                 <img
                   src={heroImage768}
                   srcSet={`${heroImage512} 512w, ${heroImage768} 768w`}
-                  sizes="(min-width: 768px) 50vw, 100vw"
+                  sizes="(min-width: 768px) 42vw, min(100vw, 384px)"
                   alt="ALKAMILK BONTIN-MK7"
-                  className="w-full h-full object-contain p-3"
+                  width="768"
+                  height="1152"
+                  className="block w-full h-full object-contain"
                   fetchPriority="high"
                   decoding="async"
                 />
