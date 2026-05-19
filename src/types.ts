@@ -31,5 +31,5 @@ export interface FAQ {
 export interface PainPoint {
   id: number;
   text: string;
-  icon: string;
+  icon: 'knee' | 'back' | 'fatigue' | 'standing' | 'wakePain' | 'walking';
 }

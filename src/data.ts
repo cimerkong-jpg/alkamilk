@@ -1,12 +1,12 @@
 import type { Review, Ingredient, Combo, FAQ, PainPoint } from './types';
 
 export const painPoints: PainPoint[] = [
-  { id: 1, text: 'Đau khớp gối', icon: '🦵' },
-  { id: 2, text: 'Đau lưng', icon: '🔙' },
-  { id: 3, text: 'Mỏi cơ tích tụ', icon: '😫' },
-  { id: 4, text: 'Đứng lâu mệt mỏi', icon: '🧍' },
-  { id: 5, text: 'Thức dậy đau người', icon: '😴' },
-  { id: 6, text: 'Đi lại khó khăn', icon: '🚶' },
+  { id: 1, text: 'Đau khớp gối', icon: 'knee' },
+  { id: 2, text: 'Đau lưng', icon: 'back' },
+  { id: 3, text: 'Mỏi cơ tích tụ', icon: 'fatigue' },
+  { id: 4, text: 'Đứng lâu mệt mỏi', icon: 'standing' },
+  { id: 5, text: 'Thức dậy đau người', icon: 'wakePain' },
+  { id: 6, text: 'Đi lại khó khăn', icon: 'walking' },
 ];
 
 export const ingredients: Ingredient[] = [
