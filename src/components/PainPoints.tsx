@@ -28,18 +28,18 @@ const PainPoints = () => {
         </div>
 
         {/* Pain Cards - Mobile Optimized, Larger Touch Targets */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-8">
           {painPoints.map((pain) => (
             <div
               key={pain.id}
-              className="bg-white rounded-2xl p-3 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
+              className="bg-white rounded-2xl px-3 py-4 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
             >
-              <div className="mb-3 sm:mb-4 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-red-50 p-2.5 ring-1 ring-red-100 sm:h-24 sm:w-24 sm:p-3 md:h-28 md:w-28">
+              <div className="mb-3 flex justify-center">
+                <div className="flex h-24 w-full max-w-32 items-center justify-center rounded-2xl bg-red-50 p-2 ring-1 ring-red-100 sm:h-28 sm:max-w-36 md:h-32 md:max-w-40">
                   <img
                     src={painIconSrc[pain.icon]}
                     alt=""
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover rounded-xl"
                     loading="lazy"
                   />
                 </div>
