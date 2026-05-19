@@ -1,3 +1,6 @@
+import heroImage512 from '../assets/hero-image-512.jpg';
+import heroImage768 from '../assets/hero-image-768.jpg';
+
 const HeroSection = () => {
   const handleCTAClick = () => {
     window.open('https://m.me/your-page-id', '_blank');
@@ -80,10 +83,14 @@ const HeroSection = () => {
             {/* Product Image - Clean Frame */}
             <div className="relative">
               <div className="aspect-square bg-gradient-to-br from-red-100 via-amber-100 to-red-100 rounded-2xl shadow-xl flex items-center justify-center overflow-hidden border border-white/50">
-                <img 
-                  src="/src/assets/HERO_IMAGE.png" 
-                  alt="ALKAMILK BONTIN-MK7" 
+                <img
+                  src={heroImage768}
+                  srcSet={`${heroImage512} 512w, ${heroImage768} 768w`}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  alt="ALKAMILK BONTIN-MK7"
                   className="w-full h-full object-contain p-3"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
 
