@@ -35,7 +35,7 @@ const PainPoints = () => {
               className="bg-white rounded-2xl px-3 py-4 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
             >
               <div className="mb-3 flex justify-center">
-                <div className="flex h-24 w-full max-w-32 items-center justify-center rounded-2xl bg-red-50 p-2 ring-1 ring-red-100 sm:h-28 sm:max-w-36 md:h-32 md:max-w-40">
+                <div className="flex h-[115px] w-full max-w-[154px] items-center justify-center rounded-2xl bg-red-50 p-2 ring-1 ring-red-100 sm:h-[134px] sm:max-w-[173px] md:h-[154px] md:max-w-[192px]">
                   <img
                     src={painIconSrc[pain.icon]}
                     alt=""
