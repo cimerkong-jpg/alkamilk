@@ -46,7 +46,7 @@ const PainPoints = () => {
             <span className="font-semibold text-white">Trước khi quá muộn</span>
           </p>
           <button
-            onClick={() => window.open('https://m.me/your-page-id', '_blank')}
+            onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
             className="bg-white text-red-600 px-8 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-lg font-bold hover:bg-yellow-50 transition-all shadow-xl transform hover:scale-105 active:scale-95 w-full sm:w-auto"
           >
             📩 Nhắn tin tư vấn miễn phí

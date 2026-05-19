@@ -3,7 +3,7 @@ import heroImage768 from '../assets/hero-image-768.jpg';
 
 const HeroSection = () => {
   const handleCTAClick = () => {
-    window.open('https://m.me/your-page-id', '_blank');
+    window.open('https://m.me/1160453107144286', '_blank');
   };
 
   const handleReviewClick = () => {

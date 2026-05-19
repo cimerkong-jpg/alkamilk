@@ -2,7 +2,7 @@ import { combos } from '../data';
 
 const ComboSection = () => {
   const handleOrderClick = (combo: { buy: number; free: number }) => {
-    window.open(`https://m.me/your-page-id?text=Quan tâm combo Mua ${combo.buy} Tặng ${combo.free}`, '_blank');
+    window.open(`https://m.me/1160453107144286?text=Quan tâm combo Mua ${combo.buy} Tặng ${combo.free}`, '_blank');
   };
 
   return (

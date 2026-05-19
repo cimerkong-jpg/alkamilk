@@ -14,7 +14,7 @@ const FloatingCTA = () => {
   }, []);
 
   const handleMessengerClick = () => {
-    window.open('https://m.me/your-page-id', '_blank');
+    window.open('https://m.me/1160453107144286', '_blank');
   };
 
   const handleLineClick = () => {

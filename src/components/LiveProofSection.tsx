@@ -87,7 +87,7 @@ const LiveProofSection = () => {
           {/* Live Footer - CTA */}
           <div className="bg-gradient-to-r from-red-600 to-pink-600 p-5">
             <button
-              onClick={() => window.open('https://m.me/your-page-id', '_blank')}
+              onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
               className="w-full bg-white text-red-600 py-4 rounded-2xl font-bold text-lg hover:bg-yellow-50 transition-all shadow-xl transform hover:scale-105 active:scale-95"
             >
               💬 Nhắn tin đặt hàng ngay

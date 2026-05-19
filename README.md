@@ -107,7 +107,7 @@ src/
 ### Messenger Integration
 Update Messenger link in all components:
 ```typescript
-window.open('https://m.me/YOUR-PAGE-ID', '_blank');
+window.open('https://m.me/1160453107144286', '_blank');
 ```
 
 ### LINE Integration

@@ -97,7 +97,7 @@ const ReviewSection = () => {
         {/* CTA - Thumb Friendly */}
         <div className="text-center">
           <button
-            onClick={() => window.open('https://m.me/your-page-id', '_blank')}
+            onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
             className="bg-gradient-to-r from-red-600 to-red-700 text-white px-10 md:px-12 py-5 rounded-2xl text-lg md:text-xl font-bold hover:from-red-700 hover:to-red-800 transition-all shadow-2xl hover:shadow-3xl transform hover:scale-105 active:scale-95 w-full sm:w-auto"
           >
             📩 Nhắn tin để đặt hàng

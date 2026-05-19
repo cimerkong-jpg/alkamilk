@@ -50,7 +50,7 @@ const FAQSection = () => {
             Team chúng tôi sẵn sàng trả lời mọi thắc mắc của bạn
           </p>
           <button
-            onClick={() => window.open('https://m.me/your-page-id', '_blank')}
+            onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
             className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-10 py-4 rounded-full text-lg font-bold hover:from-blue-700 hover:to-blue-800 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             💬 Nhắn tin hỏi ngay
