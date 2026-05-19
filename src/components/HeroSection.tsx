@@ -102,7 +102,7 @@ const HeroSection = () => {
               </div>
 
               {/* Floating Badge - Social Proof */}
-              <div className="absolute -bottom-3 -left-3 bg-white px-5 py-3 rounded-xl shadow-xl border border-amber-300">
+              <div className="mt-3 w-full bg-white px-4 py-3 rounded-xl shadow-lg border border-amber-300 md:absolute md:-bottom-3 md:-left-3 md:mt-0 md:w-auto md:px-5 md:shadow-xl">
                 <p className="text-xs text-gray-600 mb-0.5">Đã tin dùng</p>
                 <p className="text-xl font-bold text-red-600">500+ người</p>
               </div>
