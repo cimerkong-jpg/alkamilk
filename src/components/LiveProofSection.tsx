@@ -4,24 +4,56 @@ const MESSENGER_URL = 'https://m.me/1160453107144286';
 const LIVE_VIDEO_SRC = '/live-loop.mp4';
 const LIVE_POSTER_SRC = '/live-poster.jpg';
 
-const LIVE_COMMENTS = [
-  'ส่งไต้หวันกี่วันคะ',
-  'ซื้อ 4 แถม 2 ยังมีไหม',
-  'ปวดเข่ากินได้ไหมคะ',
-  'ทำงานยืนทั้งวัน สนใจค่ะ',
-  'ขอรายละเอียดโปรหน่อยค่ะ',
-  'แม่ที่ไทยกินได้ไหมคะ',
-  'ทักไปแล้วนะคะ',
-  'อยู่เถาหยวนส่งได้ไหม',
+const LIVE_COMMENT_PROFILES = [
+  {
+    name: 'Nuch',
+    text: 'ส่งไต้หวันกี่วันคะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
+  },
+  {
+    name: 'Ploy',
+    text: 'ซื้อ 4 แถม 2 ยังมีไหม',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/65.jpg',
+  },
+  {
+    name: 'May',
+    text: 'ปวดเข่ากินได้ไหมคะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
+  },
+  {
+    name: 'Ning',
+    text: 'ทำงานยืนทั้งวัน สนใจค่ะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/79.jpg',
+  },
+  {
+    name: 'Ann',
+    text: 'ขอรายละเอียดโปรหน่อยค่ะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/52.jpg',
+  },
+  {
+    name: 'Dao',
+    text: 'แม่ที่ไทยกินได้ไหมคะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/33.jpg',
+  },
+  {
+    name: 'Fon',
+    text: 'ทักไปแล้วนะคะ',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/46.jpg',
+  },
+  {
+    name: 'Kae',
+    text: 'อยู่เถาหยวนส่งได้ไหม',
+    avatarUrl: 'https://randomuser.me/api/portraits/women/81.jpg',
+  },
 ];
 
-const COMMENT_NAMES = ['Nuch', 'Ploy', 'May', 'Ning', 'Ann', 'Dao', 'Fon', 'Kae'];
 const REACTIONS = ['❤️', '👍', '😍', '😮'];
 
 interface LiveComment {
   id: number;
   name: string;
   text: string;
+  avatarUrl: string;
 }
 
 interface FloatingReaction {
@@ -91,8 +123,7 @@ const LiveProofSection = () => {
         ...currentComments.slice(-2),
         {
           id: Date.now(),
-          name: getRandomItem(COMMENT_NAMES),
-          text: getRandomItem(LIVE_COMMENTS),
+          ...getRandomItem(LIVE_COMMENT_PROFILES),
         },
       ]);
 
@@ -201,8 +232,21 @@ const LiveProofSection = () => {
               <div className="absolute bottom-4 left-3 right-14 space-y-2">
                 {comments.map((comment) => (
                   <div key={comment.id} className="live-comment-enter flex items-start gap-2">
-                    <div className="mt-1 h-7 w-7 flex-shrink-0 rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm leading-7 shadow">
+                    <div className="relative mt-1 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm font-bold leading-7 text-red-800 shadow ring-2 ring-white/70">
                       {comment.name.charAt(0)}
+                      <img
+                        src={comment.avatarUrl}
+                        alt=""
+                        width="28"
+                        height="28"
+                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        onError={(event) => {
+                          event.currentTarget.style.display = 'none';
+                        }}
+                      />
                     </div>
                     <div className="max-w-[92%] rounded-2xl bg-white/92 px-3 py-2 text-left shadow-lg backdrop-blur">
                       <p className="text-[11px] font-bold leading-none text-gray-900">{comment.name}</p>
