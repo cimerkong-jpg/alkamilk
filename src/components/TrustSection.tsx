@@ -28,29 +28,29 @@ const TrustSection = () => {
         </div>
 
         {/* Trust Badges */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center shadow-lg border-2 border-blue-200">
-            <div className="text-5xl mb-3">⭐</div>
-            <h3 className="font-bold text-gray-900 text-lg mb-2">Công thức cao cấp</h3>
-            <p className="text-gray-700 text-sm">Công thức premium, chất lượng cao</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 text-center shadow-md border border-blue-200">
+            <div className="text-3xl mb-2">⭐</div>
+            <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1">Công thức cao cấp</h3>
+            <p className="text-gray-700 text-xs md:text-sm leading-snug">Công thức premium, chất lượng cao</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center shadow-lg border-2 border-green-200">
-            <div className="text-5xl mb-3">💬</div>
-            <h3 className="font-bold text-gray-900 text-lg mb-2">Hỗ trợ 24/7</h3>
-            <p className="text-gray-700 text-sm">Chăm sóc khách hàng suốt 24 giờ</p>
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 text-center shadow-md border border-green-200">
+            <div className="text-3xl mb-2">💬</div>
+            <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1">Hỗ trợ 24/7</h3>
+            <p className="text-gray-700 text-xs md:text-sm leading-snug">Chăm sóc khách hàng suốt 24 giờ</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center shadow-lg border-2 border-purple-200">
-            <div className="text-5xl mb-3">📱</div>
-            <h3 className="font-bold text-gray-900 text-lg mb-2">Tư vấn Messenger</h3>
-            <p className="text-gray-700 text-sm">Tư vấn qua Messenger/LINE</p>
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 text-center shadow-md border border-purple-200">
+            <div className="text-3xl mb-2">📱</div>
+            <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1">Tư vấn Messenger</h3>
+            <p className="text-gray-700 text-xs md:text-sm leading-snug">Tư vấn qua Messenger</p>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 text-center shadow-lg border-2 border-amber-200">
-            <div className="text-5xl mb-3">🚚</div>
-            <h3 className="font-bold text-gray-900 text-lg mb-2">Giao hàng nhanh</h3>
-            <p className="text-gray-700 text-sm">Giao hàng nhanh chóng, đáng tin cậy</p>
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-4 text-center shadow-md border border-amber-200">
+            <div className="text-3xl mb-2">🚚</div>
+            <h3 className="font-bold text-gray-900 text-sm md:text-base mb-1">Giao hàng nhanh</h3>
+            <p className="text-gray-700 text-xs md:text-sm leading-snug">Giao hàng nhanh chóng, đáng tin cậy</p>
           </div>
         </div>
 
