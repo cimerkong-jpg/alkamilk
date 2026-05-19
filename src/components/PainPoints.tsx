@@ -28,14 +28,14 @@ const PainPoints = () => {
         </div>
 
         {/* Pain Cards - Mobile Optimized, Larger Touch Targets */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 mb-8">
           {painPoints.map((pain) => (
             <div
               key={pain.id}
-              className="bg-white rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
+              className="bg-white rounded-2xl p-3 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
             >
-              <div className="mb-4 flex justify-center">
-                <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-red-50 p-3 ring-1 ring-red-100 md:h-28 md:w-28">
+              <div className="mb-3 sm:mb-4 flex justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-red-50 p-2.5 ring-1 ring-red-100 sm:h-24 sm:w-24 sm:p-3 md:h-28 md:w-28">
                   <img
                     src={painIconSrc[pain.icon]}
                     alt=""
@@ -46,7 +46,7 @@ const PainPoints = () => {
               </div>
               
               {/* Clear, Emotional Text */}
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 text-center leading-snug">
+              <h3 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 text-center leading-snug">
                 {pain.text}
               </h3>
             </div>
