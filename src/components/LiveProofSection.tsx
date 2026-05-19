@@ -103,12 +103,41 @@ const LiveProofSection = () => {
                   <button
                     type="button"
                     onClick={handleToggleMute}
-                    className="absolute right-3 top-3 flex min-h-10 items-center gap-2 rounded-full bg-white/86 px-3 py-2 text-xs font-bold text-gray-950 shadow-lg ring-1 ring-black/10 backdrop-blur-xl transition hover:bg-white active:scale-95"
+                    className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/86 text-gray-950 shadow-lg ring-1 ring-black/10 backdrop-blur-xl transition hover:bg-white active:scale-95"
                     aria-label={isMuted ? 'เปิดเสียงวิดีโอ' : 'ปิดเสียงวิดีโอ'}
                     aria-pressed={!isMuted}
                   >
-                    <span className="text-base leading-none">{isMuted ? '🔇' : '🔊'}</span>
-                    <span>{isMuted ? 'เปิดเสียง' : 'ปิดเสียง'}</span>
+                    {isMuted ? (
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                      >
+                        <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+                        <path d="m16 9 5 5" />
+                        <path d="m21 9-5 5" />
+                      </svg>
+                    ) : (
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                      >
+                        <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+                        <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                        <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+                      </svg>
+                    )}
                   </button>
                 )}
 
