@@ -59,9 +59,10 @@ interface LiveComment {
 interface FloatingReaction {
   id: number;
   icon: string;
-  right: number;
+  left: number;
   size: number;
   drift: number;
+  duration: number;
 }
 
 const getRandomItem = <T,>(items: T[]) => items[Math.floor(Math.random() * items.length)];
@@ -120,13 +121,19 @@ const LiveProofSection = () => {
     let timeoutId: number;
 
     const pushComment = () => {
+      const id = Date.now();
+
       setComments((currentComments) => [
         ...currentComments.slice(-2),
         {
-          id: Date.now(),
+          id,
           ...getRandomItem(LIVE_COMMENT_PROFILES),
         },
       ]);
+
+      window.setTimeout(() => {
+        setComments((currentComments) => currentComments.filter((comment) => comment.id !== id));
+      }, 7600);
 
       timeoutId = window.setTimeout(pushComment, 2000 + Math.random() * 2000);
     };
@@ -148,20 +155,21 @@ const LiveProofSection = () => {
         {
           id,
           icon: getRandomItem(REACTIONS),
-          right: 4 + Math.random() * 22,
-          size: 24 + Math.random() * 10,
-          drift: -18 + Math.random() * 36,
+          left: 45 + Math.random() * 40,
+          size: 26 + Math.random() * 12,
+          drift: -42 + Math.random() * 64,
+          duration: 2800 + Math.random() * 900,
         },
       ]);
 
       window.setTimeout(() => {
         setReactions((currentReactions) => currentReactions.filter((reaction) => reaction.id !== id));
-      }, 3200);
+      }, 3800);
 
-      timeoutId = window.setTimeout(pushReaction, 1700 + Math.random() * 1300);
+      timeoutId = window.setTimeout(pushReaction, 850 + Math.random() * 900);
     };
 
-    timeoutId = window.setTimeout(pushReaction, 1200);
+    timeoutId = window.setTimeout(pushReaction, 650);
     return () => window.clearTimeout(timeoutId);
   }, [isInView, prefersReducedMotion]);
 
@@ -183,19 +191,6 @@ const LiveProofSection = () => {
 
         <div className="max-w-[430px] mx-auto">
           <div className="overflow-hidden rounded-2xl bg-gray-950 shadow-2xl ring-1 ring-red-200">
-            <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-red-700 to-red-600 px-4 py-3 text-white">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-3 w-3">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60"></span>
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-white"></span>
-                </span>
-                <span className="text-sm font-black tracking-wide">LIVE</span>
-              </div>
-              <span className="text-sm font-bold text-white/95">
-                👁 {(viewerCount / 1000).toFixed(1)}K กำลังดู
-              </span>
-            </div>
-
             <div className="relative aspect-[9/16] bg-gray-900">
               {shouldPlayVideo ? (
                 <video
@@ -219,10 +214,17 @@ const LiveProofSection = () => {
               )}
 
               <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 to-transparent"></div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/55 via-black/15 to-transparent"></div>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black/70 via-black/22 to-transparent"></div>
 
-              <div className="absolute left-3 top-3 rounded-full bg-black/45 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
-                ALKAMILK BONTIN-MK7
+              <div className="absolute left-4 top-4 flex overflow-hidden rounded-[4px] text-white shadow-lg">
+                <div className="flex items-center gap-1.5 bg-red-600 px-3 py-1.5 text-sm font-black tracking-wide">
+                  <span className="h-2 w-2 rounded-full bg-white live-dot-pulse"></span>
+                  LIVE
+                </div>
+                <div className="flex items-center gap-1.5 bg-black/38 px-2.5 py-1.5 text-sm font-bold backdrop-blur-sm">
+                  <span className="text-base leading-none">👁</span>
+                  {(viewerCount / 1000).toFixed(1)}K
+                </div>
               </div>
 
               {!shouldPlayVideo && prefersReducedMotion && (
@@ -231,7 +233,7 @@ const LiveProofSection = () => {
                 </div>
               )}
 
-              <div className="absolute bottom-4 left-3 right-16 space-y-1.5">
+              <div className="absolute bottom-20 left-4 right-24 space-y-1.5">
                 {comments.map((comment) => (
                   <div key={comment.id} className="live-comment-enter flex max-w-[94%] items-end gap-2">
                     <div className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm font-bold leading-7 text-red-800 shadow ring-2 ring-white/75">
@@ -250,7 +252,7 @@ const LiveProofSection = () => {
                         }}
                       />
                     </div>
-                    <div className="rounded-[18px] bg-black/52 px-3 py-2 text-left shadow-lg ring-1 ring-white/10 backdrop-blur-md">
+                    <div className="rounded-[10px] bg-black/43 px-3 py-2 text-left shadow-lg ring-1 ring-white/10 backdrop-blur-[2px]">
                       <p className="text-[11px] font-bold leading-none text-white/90">{comment.name}</p>
                       <p className="mt-1 text-[13px] font-medium leading-snug text-white">{comment.text}</p>
                     </div>
@@ -258,34 +260,52 @@ const LiveProofSection = () => {
                 ))}
               </div>
 
-              <div className="pointer-events-none absolute bottom-4 right-2 top-16 w-16 overflow-hidden">
+              <div className="pointer-events-none absolute bottom-16 right-0 top-16 left-[44%] overflow-hidden">
                 {reactions.map((reaction) => (
                   <span
                     key={reaction.id}
-                    className="live-reaction-float absolute bottom-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/88 shadow-lg ring-1 ring-white/70 backdrop-blur-sm"
+                    className="live-reaction-float absolute bottom-0 flex h-11 w-11 items-center justify-center rounded-full bg-white/92 shadow-xl ring-1 ring-white/80 backdrop-blur-sm"
                     style={{
-                      right: `${reaction.right}px`,
+                      left: `${reaction.left}%`,
                       fontSize: `${reaction.size}px`,
                       '--reaction-drift': `${reaction.drift}px`,
+                      '--reaction-duration': `${reaction.duration}ms`,
                     } as CSSProperties}
                   >
                     {reaction.icon}
                   </span>
                 ))}
               </div>
-            </div>
 
-            <div className="bg-white p-3">
-              <div className="flex items-center gap-2 rounded-2xl border border-gray-200 bg-gray-50 p-2 shadow-inner">
-                <div className="min-w-0 flex-1 px-2 text-sm text-gray-500">
-                  พิมพ์ข้อความเพื่อรับโปรโมชัน...
-                </div>
+              <div className="absolute inset-x-3 bottom-3 flex items-center gap-2">
                 <button
                   onClick={handleMessengerClick}
-                  className="min-h-12 flex-shrink-0 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-4 py-3 text-sm font-black text-white shadow-lg transition hover:from-red-700 hover:to-red-800 active:scale-95"
+                  className="min-h-11 rounded-full bg-white px-5 text-base font-black tracking-wide text-gray-800 shadow-lg active:scale-95"
                 >
-                  📩 ทักแชทรับโปรโมชั่น
+                  SHARE
                 </button>
+                <button
+                  onClick={handleMessengerClick}
+                  className="min-h-11 min-w-0 flex-1 rounded-full bg-black/36 px-4 text-left text-sm font-medium text-white/88 shadow-lg ring-1 ring-white/20 backdrop-blur-md active:scale-[0.99]"
+                >
+                  แสดงความคิดเห็น...
+                </button>
+                <div className="flex flex-shrink-0 items-center gap-1.5">
+                  <button
+                    onClick={handleMessengerClick}
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1877F2] text-xl shadow-lg active:scale-95"
+                    aria-label="Like"
+                  >
+                    👍
+                  </button>
+                  <button
+                    onClick={handleMessengerClick}
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F02849] text-xl shadow-lg active:scale-95"
+                    aria-label="Love"
+                  >
+                    ❤️
+                  </button>
+                </div>
               </div>
             </div>
           </div>
