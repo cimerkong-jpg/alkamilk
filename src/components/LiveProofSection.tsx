@@ -1,149 +1,262 @@
+import { useEffect, useRef, useState } from 'react';
+
+const MESSENGER_URL = 'https://m.me/1160453107144286';
+const LIVE_VIDEO_SRC = '/live-loop.mp4';
+const LIVE_POSTER_SRC = '/live-poster.jpg';
+
+const LIVE_COMMENTS = [
+  'ส่งไต้หวันกี่วันคะ',
+  'ซื้อ 4 แถม 2 ยังมีไหม',
+  'ปวดเข่ากินได้ไหมคะ',
+  'ทำงานยืนทั้งวัน สนใจค่ะ',
+  'ขอรายละเอียดโปรหน่อยค่ะ',
+  'แม่ที่ไทยกินได้ไหมคะ',
+  'ทักไปแล้วนะคะ',
+  'อยู่เถาหยวนส่งได้ไหม',
+];
+
+const COMMENT_NAMES = ['Nuch', 'Ploy', 'May', 'Ning', 'Ann', 'Dao', 'Fon', 'Kae'];
+const REACTIONS = ['❤️', '👍', '😍', '😮'];
+
+interface LiveComment {
+  id: number;
+  name: string;
+  text: string;
+}
+
+interface FloatingReaction {
+  id: number;
+  icon: string;
+  right: number;
+  size: number;
+}
+
+const getRandomItem = <T,>(items: T[]) => items[Math.floor(Math.random() * items.length)];
+
 const LiveProofSection = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [hasVideoError, setHasVideoError] = useState(false);
+  const [viewerCount, setViewerCount] = useState(4860);
+  const [comments, setComments] = useState<LiveComment[]>([]);
+  const [reactions, setReactions] = useState<FloatingReaction[]>([]);
+
+  const shouldPlayVideo = isInView && !prefersReducedMotion && !hasVideoError;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updateMotionPreference();
+    mediaQuery.addEventListener('change', updateMotionPreference);
+
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '180px 0px', threshold: 0.2 },
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || prefersReducedMotion) return;
+
+    const intervalId = window.setInterval(() => {
+      setViewerCount(Math.floor(4800 + Math.random() * 201));
+    }, 3500);
+
+    return () => window.clearInterval(intervalId);
+  }, [isInView, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!isInView || prefersReducedMotion) return;
+
+    let timeoutId: number;
+
+    const pushComment = () => {
+      setComments((currentComments) => [
+        ...currentComments.slice(-2),
+        {
+          id: Date.now(),
+          name: getRandomItem(COMMENT_NAMES),
+          text: getRandomItem(LIVE_COMMENTS),
+        },
+      ]);
+
+      timeoutId = window.setTimeout(pushComment, 2000 + Math.random() * 2000);
+    };
+
+    timeoutId = window.setTimeout(pushComment, 900);
+    return () => window.clearTimeout(timeoutId);
+  }, [isInView, prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!isInView || prefersReducedMotion) return;
+
+    let timeoutId: number;
+
+    const pushReaction = () => {
+      const id = Date.now();
+
+      setReactions((currentReactions) => [
+        ...currentReactions.slice(-3),
+        {
+          id,
+          icon: getRandomItem(REACTIONS),
+          right: 10 + Math.random() * 18,
+          size: 22 + Math.random() * 8,
+        },
+      ]);
+
+      window.setTimeout(() => {
+        setReactions((currentReactions) => currentReactions.filter((reaction) => reaction.id !== id));
+      }, 3200);
+
+      timeoutId = window.setTimeout(pushReaction, 1700 + Math.random() * 1300);
+    };
+
+    timeoutId = window.setTimeout(pushReaction, 1200);
+    return () => window.clearTimeout(timeoutId);
+  }, [isInView, prefersReducedMotion]);
+
+  const handleMessengerClick = () => {
+    window.open(MESSENGER_URL, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <section className="py-12 md:py-16 px-4 bg-gradient-to-b from-purple-50 via-pink-50 to-white">
+    <section ref={sectionRef} className="py-12 md:py-16 px-4 bg-gradient-to-b from-white via-red-50 to-white">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            <span className="text-red-600">Bán chạy</span> trong cộng đồng người Việt tại Đài Loan
+        <div className="text-center mb-8 md:mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+            กำลังเป็นที่นิยมในกลุ่มคนไทยที่ไต้หวัน
           </h2>
-          <p className="text-lg text-gray-700">
-            💬 Nhiều người tin dùng và giới thiệu cho bạn bè
+          <p className="text-base md:text-lg text-gray-700">
+            ดูบรรยากาศไลฟ์และข้อความจากลูกค้าจริง
           </p>
         </div>
 
-        {/* Mock Live Frame */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-red-200 mb-8">
-          {/* Live Header */}
-          <div className="bg-gradient-to-r from-red-600 to-pink-600 text-white p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
-              <span className="font-bold text-lg">ĐANG LIVE</span>
+        <div className="max-w-[430px] mx-auto">
+          <div className="overflow-hidden rounded-2xl bg-gray-950 shadow-2xl ring-1 ring-red-200">
+            <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-red-700 to-red-600 px-4 py-3 text-white">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-3 w-3">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60"></span>
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-white"></span>
+                </span>
+                <span className="text-sm font-black tracking-wide">LIVE</span>
+              </div>
+              <span className="text-sm font-bold text-white/95">
+                👁 {(viewerCount / 1000).toFixed(1)}K กำลังดู
+              </span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm">👁️ 234 người đang xem</span>
+
+            <div className="relative aspect-[9/16] bg-gray-900">
+              {shouldPlayVideo ? (
+                <video
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  poster={LIVE_POSTER_SRC}
+                  src={LIVE_VIDEO_SRC}
+                  onError={() => setHasVideoError(true)}
+                />
+              ) : (
+                <img
+                  src={LIVE_POSTER_SRC}
+                  alt="ALKAMILK BONTIN-MK7 live replay"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              )}
+
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 to-transparent"></div>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/55 via-black/15 to-transparent"></div>
+
+              <div className="absolute left-3 top-3 rounded-full bg-black/45 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
+                ALKAMILK BONTIN-MK7
+              </div>
+
+              {!shouldPlayVideo && prefersReducedMotion && (
+                <div className="absolute inset-x-5 top-1/2 -translate-y-1/2 rounded-2xl bg-black/55 px-4 py-3 text-center text-sm font-semibold text-white backdrop-blur">
+                  เปิดโหมดลดการเคลื่อนไหวอยู่
+                </div>
+              )}
+
+              <div className="absolute bottom-4 left-3 right-14 space-y-2">
+                {comments.map((comment) => (
+                  <div key={comment.id} className="live-comment-enter flex items-start gap-2">
+                    <div className="mt-1 h-7 w-7 flex-shrink-0 rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm leading-7 shadow">
+                      {comment.name.charAt(0)}
+                    </div>
+                    <div className="max-w-[92%] rounded-2xl bg-white/92 px-3 py-2 text-left shadow-lg backdrop-blur">
+                      <p className="text-[11px] font-bold leading-none text-gray-900">{comment.name}</p>
+                      <p className="mt-1 text-sm leading-snug text-gray-800">{comment.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pointer-events-none absolute bottom-5 right-3 top-20 w-12 overflow-hidden">
+                {reactions.map((reaction) => (
+                  <span
+                    key={reaction.id}
+                    className="live-reaction-float absolute bottom-0 drop-shadow-lg"
+                    style={{
+                      right: `${reaction.right}px`,
+                      fontSize: `${reaction.size}px`,
+                    }}
+                  >
+                    {reaction.icon}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white p-3">
+              <div className="flex items-center gap-2 rounded-2xl border border-gray-200 bg-gray-50 p-2 shadow-inner">
+                <div className="min-w-0 flex-1 px-2 text-sm text-gray-500">
+                  พิมพ์ข้อความเพื่อรับโปรโมชัน...
+                </div>
+                <button
+                  onClick={handleMessengerClick}
+                  className="min-h-12 flex-shrink-0 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-4 py-3 text-sm font-black text-white shadow-lg transition hover:from-red-700 hover:to-red-800 active:scale-95"
+                >
+                  📩 ทักแชทรับโปรโมชั่น
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Live Content Area */}
-          <div className="relative bg-gradient-to-br from-red-50 to-pink-50 p-8 md:p-12">
-            {/* Product Display */}
-            <div className="text-center mb-6">
-              <div className="inline-block bg-white rounded-3xl p-8 shadow-2xl border-4 border-red-200">
-                <div className="text-8xl mb-4">🥛</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  ALKAMILK BONTIN-MK7
-                </h3>
-                <p className="text-red-600 font-bold text-xl">
-                  🔥 Mua 4 Tặng 2 - Hôm nay!
-                </p>
-              </div>
+          <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+            <div className="rounded-xl bg-white px-3 py-3 shadow-md ring-1 ring-red-100">
+              <p className="text-lg font-black text-red-600">4+2</p>
+              <p className="text-xs font-semibold text-gray-600">โปรขายดี</p>
             </div>
-
-            {/* Floating Reactions */}
-            <div className="absolute top-4 right-4 flex flex-col gap-2">
-              <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg animate-bounce">
-                ❤️
-              </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg animate-bounce" style={{ animationDelay: '0.2s' }}>
-                👍
-              </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg animate-bounce" style={{ animationDelay: '0.4s' }}>
-                😍
-              </div>
+            <div className="rounded-xl bg-white px-3 py-3 shadow-md ring-1 ring-amber-100">
+              <p className="text-lg font-black text-amber-600">24 ชม.</p>
+              <p className="text-xs font-semibold text-gray-600">ตอบแชท</p>
             </div>
-
-            {/* Mock Comments */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 space-y-3 max-w-md mx-auto">
-              <div className="flex items-start gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-pink-400 rounded-full flex items-center justify-center flex-shrink-0">
-                  👩
-                </div>
-                <div className="flex-1 bg-gray-100 rounded-2xl px-4 py-2">
-                  <p className="font-bold text-sm text-gray-900">Chị Mai</p>
-                  <p className="text-sm text-gray-700">Mình đặt combo 4 tặng 2 nha! 🔥</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center flex-shrink-0">
-                  👨
-                </div>
-                <div className="flex-1 bg-gray-100 rounded-2xl px-4 py-2">
-                  <p className="font-bold text-sm text-gray-900">Anh Tuấn</p>
-                  <p className="text-sm text-gray-700">Giao đến Đài Trung được không ạ?</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-teal-400 rounded-full flex items-center justify-center flex-shrink-0">
-                  👩
-                </div>
-                <div className="flex-1 bg-gray-100 rounded-2xl px-4 py-2">
-                  <p className="font-bold text-sm text-gray-900">Chị Lan</p>
-                  <p className="text-sm text-gray-700">Uống bao lâu thấy hiệu quả vậy chị? 😊</p>
-                </div>
-              </div>
+            <div className="rounded-xl bg-white px-3 py-3 shadow-md ring-1 ring-green-100">
+              <p className="text-lg font-black text-green-600">ไต้หวัน</p>
+              <p className="text-xs font-semibold text-gray-600">จัดส่งได้</p>
             </div>
           </div>
-
-          {/* Live Footer - CTA */}
-          <div className="bg-gradient-to-r from-red-600 to-pink-600 p-5">
-            <button
-              onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
-              className="w-full bg-white text-red-600 py-4 rounded-2xl font-bold text-lg hover:bg-yellow-50 transition-all shadow-xl transform hover:scale-105 active:scale-95"
-            >
-              💬 Nhắn tin đặt hàng ngay
-            </button>
-          </div>
-        </div>
-
-        {/* Support Info */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-purple-200 text-center">
-            <div className="text-5xl mb-3">👥</div>
-            <h3 className="font-bold text-gray-900 text-xl mb-2">
-              Team sẵn sàng tư vấn
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Trả lời nhanh, tư vấn nhiệt tình, hỗ trợ 24/7
-            </p>
-            <div className="flex gap-2 justify-center">
-              <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold">
-                Messenger
-              </span>
-              <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold">
-                LINE
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-amber-200 text-center">
-            <div className="text-5xl mb-3">📦</div>
-            <h3 className="font-bold text-gray-900 text-xl mb-2">
-              Giao hàng nhanh chóng
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Giao tận tay tại Đài Loan, đóng gói cẩn thận
-            </p>
-            <div className="flex gap-2 justify-center flex-wrap">
-              <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-bold">
-                Đài Bắc
-              </span>
-              <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-bold">
-                Đài Trung
-              </span>
-              <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-bold">
-                Đào Viên
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Final Push */}
-        <div className="mt-8 text-center bg-gradient-to-r from-red-100 via-pink-100 to-purple-100 rounded-2xl p-6 border-2 border-red-300">
-          <p className="text-lg font-bold text-gray-900">
-            🔥 <span className="text-red-600">Hơn 50 người</span> đã đặt hàng hôm nay!
-            <br />
-            <span className="text-gray-700">Đừng bỏ lỡ khuyến mãi đặc biệt</span>
-          </p>
         </div>
       </div>
     </section>
