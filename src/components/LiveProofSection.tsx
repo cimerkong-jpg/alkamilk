@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 const MESSENGER_URL = 'https://m.me/1160453107144286';
 const LIVE_VIDEO_SRC = '/live-loop.mp4';
@@ -61,6 +61,7 @@ interface FloatingReaction {
   icon: string;
   right: number;
   size: number;
+  drift: number;
 }
 
 const getRandomItem = <T,>(items: T[]) => items[Math.floor(Math.random() * items.length)];
@@ -147,8 +148,9 @@ const LiveProofSection = () => {
         {
           id,
           icon: getRandomItem(REACTIONS),
-          right: 10 + Math.random() * 18,
-          size: 22 + Math.random() * 8,
+          right: 4 + Math.random() * 22,
+          size: 24 + Math.random() * 10,
+          drift: -18 + Math.random() * 36,
         },
       ]);
 
@@ -229,10 +231,10 @@ const LiveProofSection = () => {
                 </div>
               )}
 
-              <div className="absolute bottom-4 left-3 right-14 space-y-2">
+              <div className="absolute bottom-4 left-3 right-16 space-y-1.5">
                 {comments.map((comment) => (
-                  <div key={comment.id} className="live-comment-enter flex items-start gap-2">
-                    <div className="relative mt-1 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm font-bold leading-7 text-red-800 shadow ring-2 ring-white/70">
+                  <div key={comment.id} className="live-comment-enter flex max-w-[94%] items-end gap-2">
+                    <div className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-red-300 to-amber-200 text-center text-sm font-bold leading-7 text-red-800 shadow ring-2 ring-white/75">
                       {comment.name.charAt(0)}
                       <img
                         src={comment.avatarUrl}
@@ -248,23 +250,24 @@ const LiveProofSection = () => {
                         }}
                       />
                     </div>
-                    <div className="max-w-[92%] rounded-2xl bg-white/92 px-3 py-2 text-left shadow-lg backdrop-blur">
-                      <p className="text-[11px] font-bold leading-none text-gray-900">{comment.name}</p>
-                      <p className="mt-1 text-sm leading-snug text-gray-800">{comment.text}</p>
+                    <div className="rounded-[18px] bg-black/52 px-3 py-2 text-left shadow-lg ring-1 ring-white/10 backdrop-blur-md">
+                      <p className="text-[11px] font-bold leading-none text-white/90">{comment.name}</p>
+                      <p className="mt-1 text-[13px] font-medium leading-snug text-white">{comment.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pointer-events-none absolute bottom-5 right-3 top-20 w-12 overflow-hidden">
+              <div className="pointer-events-none absolute bottom-4 right-2 top-16 w-16 overflow-hidden">
                 {reactions.map((reaction) => (
                   <span
                     key={reaction.id}
-                    className="live-reaction-float absolute bottom-0 drop-shadow-lg"
+                    className="live-reaction-float absolute bottom-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/88 shadow-lg ring-1 ring-white/70 backdrop-blur-sm"
                     style={{
                       right: `${reaction.right}px`,
                       fontSize: `${reaction.size}px`,
-                    }}
+                      '--reaction-drift': `${reaction.drift}px`,
+                    } as CSSProperties}
                   >
                     {reaction.icon}
                   </span>
