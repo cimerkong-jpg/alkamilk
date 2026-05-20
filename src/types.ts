@@ -3,7 +3,7 @@ export interface Review {
   name: string;
   location: string;
   text: string;
-  avatar: string;
+  avatarUrl: string;
 }
 
 export interface Ingredient {

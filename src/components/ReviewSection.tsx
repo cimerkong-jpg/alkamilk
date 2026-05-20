@@ -1,5 +1,14 @@
 import { reviews } from '../data';
 
+const reviewImages = [
+  '/review-images/review3.jpg',
+  '/review-images/review4.jpg',
+  '/review-images/review6.jpg',
+  '/review-images/review8.jpg',
+  '/review-images/review9.jpg',
+  '/review-images/review10.jpg',
+];
+
 const ReviewSection = () => {
   return (
     <section id="reviews" className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-amber-50 to-white">
@@ -17,29 +26,20 @@ const ReviewSection = () => {
         </div>
 
         {/* Review Images - Facebook Style */}
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-8">
-          <div className="relative group">
-            <img 
-              src="/src/assets/chị thoa 6-3.png" 
-              alt="Customer Review" 
-              className="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-all"
-              loading="lazy"
-            />
-            <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-              <p className="text-sm font-semibold text-gray-800">✅ Người dùng thực</p>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 mb-8">
+          {reviewImages.map((imageSrc, index) => (
+            <div key={imageSrc} className="relative group overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-amber-100">
+              <img
+                src={imageSrc}
+                alt={`Customer review ${index + 1}`}
+                className="aspect-[4/5] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+              <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                <p className="text-xs md:text-sm font-semibold text-gray-800">✅ Người dùng thực</p>
+              </div>
             </div>
-          </div>
-          <div className="relative group">
-            <img 
-              src="/src/assets/Untitled-1-01.jpg" 
-              alt="Customer Review" 
-              className="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-all"
-              loading="lazy"
-            />
-            <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-              <p className="text-sm font-semibold text-gray-800">✅ Người dùng thực</p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Facebook-Style Review Cards */}
@@ -51,8 +51,13 @@ const ReviewSection = () => {
             >
               {/* Header - Facebook Comment Style */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-orange-400 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
-                  {review.avatar}
+                <div className="w-12 h-12 rounded-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 ring-2 ring-red-100">
+                  <img
+                    src={review.avatarUrl}
+                    alt={review.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-bold text-gray-900 truncate">{review.name}</h4>
