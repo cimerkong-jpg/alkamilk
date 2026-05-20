@@ -92,8 +92,24 @@ const ReviewSection = () => {
                       loading={index < 2 ? 'eager' : 'lazy'}
                     />
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/45 to-transparent" />
-                    <div className="absolute bottom-3 left-3 rounded-full bg-white/94 px-3 py-1.5 text-[11px] font-bold text-gray-900 shadow-md backdrop-blur-md">
-                      ✅ Ảnh thật từ khách hàng
+                    <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/45 bg-white/88 px-2.5 py-1.5 text-[11px] font-bold text-gray-900 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur-xl">
+                      <span className="grid h-4 w-4 place-items-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-sm">
+                        <svg
+                          viewBox="0 0 16 16"
+                          className="h-2.5 w-2.5"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M3.5 8.2 6.4 11 12.5 5"
+                            stroke="currentColor"
+                            strokeWidth="2.1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      Verified customer
                     </div>
                   </div>
 
