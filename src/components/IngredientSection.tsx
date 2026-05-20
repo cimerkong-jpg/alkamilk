@@ -1,3 +1,5 @@
+import ingredientImage from '../assets/thành phần.png';
+
 const keyIngredients = [
   {
     name: 'MK7',
@@ -95,7 +97,7 @@ const IngredientSection = () => {
         <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr] md:items-center">
           <div className="overflow-hidden rounded-[1.5rem] bg-white shadow-[0_22px_60px_rgba(15,23,42,0.10)] ring-1 ring-blue-100">
             <img
-              src="/src/assets/thành phần.png"
+              src={ingredientImage}
               alt="Thành phần AlkaMilk Bontin-MK7"
               className="w-full object-cover"
               loading="lazy"
