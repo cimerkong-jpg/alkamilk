@@ -44,6 +44,15 @@ const StatusMessage = ({ state }: { state: SubmitState }) => {
   return null;
 };
 
+const conditionOptions = [
+  'Đau khớp gối',
+  'Đau lưng',
+  'Đứng lâu mỏi',
+  'Đi lại khó',
+  'Tê mỏi tay chân',
+  'Tư vấn cho người nhà',
+];
+
 export const ConsultationForm = ({
   compact = false,
   anchorId = 'lead-form',
@@ -52,6 +61,7 @@ export const ConsultationForm = ({
   sourceLabel = 'main',
 }: ConsultationFormProps) => {
   const [state, setState] = useState<SubmitState>('idle');
+  const [selectedCondition, setSelectedCondition] = useState(conditionOptions[0]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,6 +70,7 @@ export const ConsultationForm = ({
     try {
       await submitLead(event.currentTarget);
       event.currentTarget.reset();
+      setSelectedCondition(conditionOptions[0]);
       setState('success');
     } catch {
       setState('error');
@@ -68,53 +79,79 @@ export const ConsultationForm = ({
 
   return (
     <section id={anchorId} className={`${compact ? 'py-5 md:py-6' : 'py-8 md:py-12'} scroll-mt-20 px-4 bg-gradient-to-b from-white to-red-50`}>
-      <div className={`mx-auto ${compact ? 'max-w-4xl rounded-[1.4rem] p-4 md:p-5' : 'max-w-3xl rounded-[1.75rem] p-5 md:p-7'} bg-white shadow-[0_18px_54px_rgba(127,29,29,0.10)] ring-1 ring-red-100`}>
-        <div className={`${compact ? 'grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-center' : ''}`}>
+      <div className={`mx-auto overflow-hidden ${compact ? 'max-w-4xl rounded-[1.5rem]' : 'max-w-3xl rounded-[1.9rem]'} bg-white shadow-[0_22px_64px_rgba(127,29,29,0.12)] ring-1 ring-red-100`}>
+        <div className={`${compact ? 'grid gap-0 md:grid-cols-[0.9fr_1.1fr]' : ''}`}>
           <div>
-            <p className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-red-600">Free consultation</p>
-            <h2 className={`${compact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'} font-black text-gray-950`}>{title}</h2>
-            <p className="mt-2 text-sm font-medium leading-relaxed text-gray-600 md:text-base">{description}</p>
-            <div className="mt-3 flex flex-wrap gap-2 text-[11px] font-bold text-gray-600">
-              <span className="rounded-full bg-red-50 px-3 py-1.5 text-red-700 ring-1 ring-red-100">Tư vấn miễn phí</span>
-              <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-emerald-700 ring-1 ring-emerald-100">Không cần thanh toán trước</span>
+            <div className={`${compact ? 'h-full p-4 md:p-5' : 'p-5 md:p-7'} bg-gradient-to-br from-red-600 to-red-800 text-white`}>
+              <p className="mb-3 inline-flex rounded-full bg-white/14 px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] ring-1 ring-white/20">
+                Tư vấn miễn phí 30 giây
+              </p>
+              <h2 className={`${compact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'} font-black leading-tight`}>{title}</h2>
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-red-50 md:text-base">{description}</p>
+              <div className="mt-4 grid grid-cols-2 gap-2 text-[11px] font-bold text-white/95">
+                <span className="rounded-xl bg-white/12 px-3 py-2 ring-1 ring-white/15">Không cần mua ngay</span>
+                <span className="rounded-xl bg-white/12 px-3 py-2 ring-1 ring-white/15">Team gọi/nhắn lại</span>
+              </div>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className={`${compact ? 'mt-0 grid gap-3 md:grid-cols-[1fr_0.85fr_auto]' : 'mt-5 space-y-4'}`}>
+          <form onSubmit={handleSubmit} className={`${compact ? 'p-4 md:p-5' : 'p-5 md:p-7'} space-y-4`}>
             <input type="hidden" name="form_type" value="consultation" />
             <input type="hidden" name="source" value={`${getLandingVariant()}-${sourceLabel}`} />
+            <input type="hidden" name="condition" value={selectedCondition} />
 
             <label className="block">
-              <span className="mb-2 block text-sm font-black text-gray-900">Tình trạng hiện tại</span>
-              <textarea
-                name="condition"
-                required
-                rows={compact ? 2 : 4}
-                placeholder="Đau gối, đau lưng, đứng lâu mỏi..."
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-base outline-none transition focus:border-red-300 focus:bg-white focus:ring-4 focus:ring-red-100"
-              />
-            </label>
-
-            <label className="block">
-              <span className="mb-2 block text-sm font-black text-gray-900">Số điện thoại</span>
+              <span className="mb-2 block text-sm font-black text-gray-950">Số điện thoại để tư vấn</span>
               <input
                 name="phone"
                 required
                 inputMode="tel"
-                placeholder="Số điện thoại"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-base outline-none transition focus:border-red-300 focus:bg-white focus:ring-4 focus:ring-red-100"
+                autoComplete="tel"
+                placeholder="Nhập số điện thoại của bạn"
+                className="min-h-14 w-full rounded-2xl border border-red-100 bg-red-50/60 px-4 text-lg font-bold text-gray-950 outline-none transition placeholder:text-gray-400 focus:border-red-300 focus:bg-white focus:ring-4 focus:ring-red-100"
               />
             </label>
 
-            <div className={compact ? 'self-end' : ''}>
-              <button
-                type="submit"
-                disabled={state === 'submitting'}
-                className="flex min-h-14 w-full items-center justify-center rounded-2xl bg-gradient-to-r from-red-600 to-red-700 px-5 text-sm font-black text-white shadow-xl transition active:scale-[0.98] disabled:opacity-70 md:text-base"
-              >
-                {state === 'submitting' ? 'Đang gửi...' : 'Nhận tư vấn free'}
-              </button>
+            <div>
+              <p className="mb-2 text-sm font-black text-gray-950">Bạn muốn tư vấn vấn đề nào?</p>
+              <div className="grid grid-cols-2 gap-2">
+                {conditionOptions.map((condition) => (
+                  <button
+                    key={condition}
+                    type="button"
+                    onClick={() => setSelectedCondition(condition)}
+                    className={`min-h-11 rounded-xl px-3 text-left text-xs font-black transition active:scale-[0.98] ${
+                      selectedCondition === condition
+                        ? 'bg-gray-950 text-white shadow-lg'
+                        : 'bg-gray-50 text-gray-700 ring-1 ring-gray-200'
+                    }`}
+                  >
+                    {condition}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            <label className="block">
+              <span className="mb-2 block text-sm font-black text-gray-950">Ghi chú thêm <span className="font-semibold text-gray-400">(không bắt buộc)</span></span>
+              <input
+                name="note"
+                placeholder="Ví dụ: đau 2 tuần, mẹ ở Đài Trung..."
+                className="min-h-12 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 text-base outline-none transition focus:border-red-300 focus:bg-white focus:ring-4 focus:ring-red-100"
+              />
+            </label>
+
+            <button
+              type="submit"
+              disabled={state === 'submitting'}
+              className="flex min-h-14 w-full items-center justify-center rounded-2xl bg-gradient-to-r from-red-600 to-red-700 px-5 text-base font-black text-white shadow-[0_16px_34px_rgba(220,38,38,0.28)] transition active:scale-[0.98] disabled:opacity-70"
+            >
+              {state === 'submitting' ? 'Đang gửi...' : 'Nhận tư vấn miễn phí'}
+            </button>
+
+            <p className="text-center text-[11px] font-semibold text-gray-500">
+              Chỉ dùng để tư vấn AlkaMilk. Không spam, không yêu cầu thanh toán trước.
+            </p>
           </form>
         </div>
 
