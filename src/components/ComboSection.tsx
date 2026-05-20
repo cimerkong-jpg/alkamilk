@@ -1,4 +1,6 @@
 import { combos } from '../data';
+import milkGlassImage from '../assets/Untitled-2.pngda.png';
+import productCanImage from '../assets/z7581638795275_3eb265c3326ec71be9a0b41408d8d40c.pngda.png';
 
 const ComboSection = () => {
   const handleOrderClick = (combo: { buy: number; free: number }) => {
@@ -67,13 +69,14 @@ const ComboSection = () => {
                   <div className={`grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl ${
                     combo.isBestSeller ? 'bg-red-50 text-red-600' : 'bg-amber-50 text-amber-600'
                   }`}>
-                    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
-                      <path d="M7 4.5h10l-1 15H8L7 4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-                      <path d="M8 8h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                      <path d="M9 13.5c1.4.9 4.6.9 6 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                    </svg>
+                    <img
+                      src={milkGlassImage}
+                      alt="Ly sữa AlkaMilk"
+                      className="h-10 w-8 object-contain drop-shadow-sm"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 pr-16">
                     <p className="text-xs font-bold uppercase tracking-[0.12em] text-gray-400">
                       Combo ưu đãi
                     </p>
@@ -81,6 +84,24 @@ const ComboSection = () => {
                       Mua {combo.buy} <span className="text-red-600">+{combo.free}</span>
                     </h3>
                   </div>
+                </div>
+
+                <div className="absolute right-0 top-10 z-20 flex h-20 w-16 items-end justify-center rounded-2xl bg-gradient-to-b from-white to-amber-50/80 ring-1 ring-amber-100">
+                  <img
+                    src={productCanImage}
+                    alt="AlkaMilk Bontin-MK7"
+                    className="h-20 w-14 object-contain drop-shadow-[0_10px_16px_rgba(15,23,42,0.18)]"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="mb-4 rounded-2xl border border-amber-100 bg-gradient-to-r from-amber-50 to-white px-3 py-2 pr-16">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-amber-700">
+                    AlkaMilk Bontin-MK7
+                  </p>
+                  <p className="text-xs font-semibold text-gray-500">
+                    Hộp 400g - công thức Canxi + MK7
+                  </p>
                 </div>
 
                 <div className="mb-4 grid grid-cols-2 overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
