@@ -36,75 +36,79 @@ const ComboSection = () => {
           />
         </div>
 
-        {/* Combo Cards - Mobile Optimized */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8">
+        {/* Combo Cards - Compact Premium */}
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 mb-8">
           {combos.map((combo) => (
             <div
               key={combo.id}
-              className={`relative bg-white rounded-3xl p-5 md:p-6 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 ${
+              className={`relative overflow-hidden rounded-2xl bg-white p-4 shadow-[0_14px_36px_rgba(15,23,42,0.10)] transition-all hover:-translate-y-1 hover:shadow-[0_20px_46px_rgba(15,23,42,0.14)] ${
                 combo.isBestSeller
-                  ? 'border-4 border-red-500 ring-4 ring-red-200'
-                  : 'border-2 border-gray-200'
+                  ? 'border-2 border-red-500 ring-4 ring-red-100'
+                  : 'border border-gray-200'
               }`}
             >
               {/* Best Seller Badge */}
               {combo.isBestSeller && (
-                <>
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-5 py-2 rounded-full shadow-xl font-bold text-sm animate-pulse">
-                      ⭐ Bán chạy nhất
-                    </div>
-                  </div>
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl animate-pulse"></div>
-                </>
+                <div className="absolute left-4 top-3 z-10 rounded-full bg-gradient-to-r from-red-600 to-orange-500 px-3 py-1 text-[11px] font-bold text-white shadow-lg">
+                  Bán chạy nhất
+                </div>
               )}
 
               {/* Savings Badge */}
               {combo.savingsPercent && (
-                <div className="absolute -top-2 -right-2 bg-gradient-to-br from-amber-400 to-amber-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl transform rotate-12 z-10">
-                  <div className="text-center">
-                    <div className="text-xs font-bold leading-tight">Tiết kiệm</div>
-                    <div className="text-lg font-bold leading-tight">{combo.savingsPercent}%</div>
-                  </div>
+                <div className="absolute right-3 top-3 z-10 rounded-full bg-amber-500 px-3 py-1 text-xs font-black text-white shadow-md">
+                  -{combo.savingsPercent}%
                 </div>
               )}
 
               {/* Content */}
-              <div className="text-center mt-6 relative z-10">
-                <div className="text-6xl mb-4">🥛</div>
-                
-                <div className="mb-4">
-                  <div className="text-4xl md:text-5xl font-bold text-red-600 mb-2">
-                    Mua {combo.buy}
+              <div className={`relative z-10 ${combo.isBestSeller ? 'pt-8' : 'pt-7'}`}>
+                <div className="mb-4 flex items-center gap-3">
+                  <div className={`grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl ${
+                    combo.isBestSeller ? 'bg-red-50 text-red-600' : 'bg-amber-50 text-amber-600'
+                  }`}>
+                    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
+                      <path d="M7 4.5h10l-1 15H8L7 4.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                      <path d="M8 8h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                      <path d="M9 13.5c1.4.9 4.6.9 6 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    </svg>
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-amber-600">
-                    Tặng {combo.free}
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-gray-400">
+                      Combo ưu đãi
+                    </p>
+                    <h3 className="text-2xl font-black tracking-tight text-gray-950 md:text-3xl">
+                      Mua {combo.buy} <span className="text-red-600">+{combo.free}</span>
+                    </h3>
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-4 border-2 border-gray-200">
-                  <p className="text-sm text-gray-600 mb-1 font-semibold">Nhận thực tế</p>
-                  <p className="text-3xl md:text-4xl font-bold text-gray-900">
-                    {combo.buy + combo.free} <span className="text-lg">hộp</span>
-                  </p>
+                <div className="mb-4 grid grid-cols-2 overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
+                  <div className="border-r border-gray-200 px-3 py-3">
+                    <p className="text-[11px] font-bold text-gray-500">Thanh toán</p>
+                    <p className="text-lg font-black text-gray-900">{combo.buy} hộp</p>
+                  </div>
+                  <div className="px-3 py-3">
+                    <p className="text-[11px] font-bold text-gray-500">Nhận đủ</p>
+                    <p className="text-lg font-black text-red-600">{combo.buy + combo.free} hộp</p>
+                  </div>
                 </div>
 
                 {combo.isBestSeller && (
-                  <div className="bg-gradient-to-r from-red-100 to-orange-100 text-red-700 px-4 py-2 rounded-xl mb-4 text-sm font-bold border-2 border-red-300">
-                    🔥 Nhiều người đặt nhất!
+                  <div className="mb-4 rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-700 ring-1 ring-red-100">
+                    Nhiều khách chọn nhất vì tiết kiệm hơn.
                   </div>
                 )}
 
                 <button
                   onClick={() => handleOrderClick(combo)}
-                  className={`w-full py-4 rounded-2xl font-bold text-base md:text-lg transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95 ${
+                  className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-sm font-black transition-all shadow-lg active:scale-[0.98] ${
                     combo.isBestSeller
                       ? 'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800'
                       : 'bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700'
                   }`}
                 >
-                  📩 Nhắn tin đặt combo này
+                  Nhắn tin đặt combo
                 </button>
               </div>
             </div>
