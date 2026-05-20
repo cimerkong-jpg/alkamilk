@@ -4,18 +4,27 @@ const HeaderPromoBar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white py-3 px-4 shadow-lg">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <p className="text-sm md:text-base font-bold truncate animate-pulse">
-            🔥 Khuyến mãi đặc biệt hôm nay Mua 4 Tặng 2 kèm quà tặng
-          </p>
+    <div className="sticky top-0 z-50 border-b border-red-100/80 bg-white/92 px-4 py-2.5 text-gray-950 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-xs font-black uppercase tracking-[0.14em] text-red-600">
+              ALKAMILK BONTIN-MK7
+            </p>
+            <p className="truncate text-[11px] font-semibold text-gray-500 md:text-xs">
+              ส่งไต้หวัน • คนไทยดูแล • ตอบแชทเร็ว
+            </p>
+          </div>
         </div>
         <button
           onClick={handleChatClick}
-          className="bg-white text-red-600 px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-bold hover:bg-yellow-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 flex-shrink-0"
+          className="flex-shrink-0 rounded-full border border-red-100 bg-red-50 px-3.5 py-2 text-xs font-black text-red-600 shadow-sm transition-all hover:bg-red-100 active:scale-95 md:px-4"
         >
-          Nhắn tin 💬
+          ดูโปรวันนี้
         </button>
       </div>
     </div>

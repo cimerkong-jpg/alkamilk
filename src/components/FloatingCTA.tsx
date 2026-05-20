@@ -48,18 +48,27 @@ const FloatingCTA = () => {
         </button>
       </div>
 
-      {/* Mobile Bottom Bar - Alternative for very small screens */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-red-600 to-red-700 text-white p-3 shadow-2xl md:hidden">
-        <div className="flex items-center justify-between max-w-screen-xl mx-auto">
-          <div className="flex-1">
-            <p className="text-sm font-bold">🔥 Khuyến mãi đặc biệt hôm nay!</p>
-            <p className="text-xs text-red-100">Mua 4 Tặng 2</p>
+      {/* Mobile Bottom Action Tray */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/20 bg-gray-950/92 px-3 pb-[calc(env(safe-area-inset-bottom)+10px)] pt-3 text-white shadow-[0_-18px_48px_rgba(15,23,42,0.28)] backdrop-blur-xl md:hidden">
+        <div className="mx-auto flex max-w-screen-xl items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex items-center gap-2">
+              <span className="rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.08em]">
+                Hot combo
+              </span>
+              <span className="text-[11px] font-semibold text-gray-300">วันนี้</span>
+            </div>
+            <p className="truncate text-sm font-black">ซื้อ 4 แถม 2</p>
+            <p className="truncate text-xs font-medium text-gray-300">รับคำแนะนำก่อนสั่งซื้อ</p>
           </div>
           <button
             onClick={handleMessengerClick}
-            className="bg-white text-red-600 px-6 py-3 rounded-full text-sm font-bold shadow-lg active:scale-95 transition-transform"
+            className="inline-flex min-h-12 flex-shrink-0 items-center justify-center gap-2 rounded-full bg-[#0084FF] px-5 text-sm font-black text-white shadow-[0_10px_28px_rgba(0,132,255,0.32)] transition-transform active:scale-95"
           >
-            Nhắn tin 💬
+            <svg viewBox="0 0 36 36" aria-hidden="true" className="h-5 w-5" fill="currentColor">
+              <path d="M18 3.6C9.8 3.6 3.4 9.6 3.4 17.7c0 4.2 1.7 7.8 4.6 10.3v5.1l5-2.8c1.6.5 3.2.8 5 .8 8.2 0 14.6-6 14.6-14.1S26.2 3.6 18 3.6Zm1.4 18.9-3.7-4-7.2 4 7.9-8.4 3.8 4 7.1-4-7.9 8.4Z" />
+            </svg>
+            ทักแชท
           </button>
         </div>
       </div>
