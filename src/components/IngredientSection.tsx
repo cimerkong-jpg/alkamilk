@@ -1,42 +1,71 @@
 const keyIngredients = [
-  { name: 'MK7', description: 'ช่วยพาแคลเซียมเข้าสู่กระดูก', icon: 'pill' },
-  { name: 'Aquamin F', description: 'แคลเซียมจากสาหร่ายทะเล', icon: 'wave' },
-  { name: 'Ovomet', description: 'ดูแลข้อต่อและเส้นเอ็น', icon: 'egg' },
-  { name: 'Polycan', description: 'เสริมการดูแลร่างกาย', icon: 'shield' },
+  {
+    name: 'MK7',
+    description: 'ช่วยพาแคลเซียมเข้าสู่กระดูก',
+    icon: 'bone',
+    iconClass: 'from-amber-50 to-orange-100 text-amber-700 ring-amber-200',
+  },
+  {
+    name: 'Aquamin F',
+    description: 'แคลเซียมจากสาหร่ายทะเล',
+    icon: 'coral',
+    iconClass: 'from-cyan-50 to-sky-100 text-cyan-700 ring-cyan-200',
+  },
+  {
+    name: 'Ovomet',
+    description: 'ดูแลข้อต่อและเส้นเอ็น',
+    icon: 'joint',
+    iconClass: 'from-violet-50 to-purple-100 text-violet-700 ring-violet-200',
+  },
+  {
+    name: 'Polycan',
+    description: 'เสริมการดูแลร่างกาย',
+    icon: 'immune',
+    iconClass: 'from-emerald-50 to-green-100 text-emerald-700 ring-emerald-200',
+  },
 ];
 
 const IngredientIcon = ({ type }: { type: string }) => {
-  if (type === 'wave') {
+  if (type === 'coral') {
     return (
-      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-        <path d="M3 15c2.4 0 2.4-2 4.8-2s2.4 2 4.8 2 2.4-2 4.8-2S19.8 15 22 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M5 9c1.7-2.6 4-3.9 7-3.9s5.3 1.3 7 3.9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+        <path d="M16 25V9" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M16 16c-4.3-.3-7.2-2.4-8.5-6.2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M16 18.5c4.4-.2 7.2-2.5 8.4-6.6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M11.3 22.2c1.8.9 7.7.9 9.5 0" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M6 26c3.2-1.8 16.8-1.8 20 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity=".45" />
       </svg>
     );
   }
 
-  if (type === 'egg') {
+  if (type === 'joint') {
     return (
-      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-        <path d="M12 21c4 0 7-3.1 7-7.4C19 9 15.6 3 12 3S5 9 5 13.6C5 17.9 8 21 12 21Z" stroke="currentColor" strokeWidth="2" />
-        <path d="M9 14.5c1.5 1.2 4.5 1.2 6 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+        <circle cx="11" cy="12" r="4.5" fill="currentColor" opacity=".16" />
+        <circle cx="21" cy="20" r="4.5" fill="currentColor" opacity=".16" />
+        <path d="M14.2 15.2 17 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+        <circle cx="11" cy="12" r="3.3" stroke="currentColor" strokeWidth="2.2" />
+        <circle cx="21" cy="20" r="3.3" stroke="currentColor" strokeWidth="2.2" />
+        <path d="M8 22c4.5 3 11.5 3 16 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity=".45" />
       </svg>
     );
   }
 
-  if (type === 'shield') {
+  if (type === 'immune') {
     return (
-      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-        <path d="M12 3 19 6v5.2c0 4.5-2.8 8.3-7 9.8-4.2-1.5-7-5.3-7-9.8V6l7-3Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <path d="m8.8 12 2.1 2.1 4.5-4.7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+        <path d="M16 4.5 25 8v6.8c0 5.8-3.6 10.7-9 12.7-5.4-2-9-6.9-9-12.7V8l9-3.5Z" fill="currentColor" opacity=".14" />
+        <path d="M16 4.5 25 8v6.8c0 5.8-3.6 10.7-9 12.7-5.4-2-9-6.9-9-12.7V8l9-3.5Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
+        <path d="m11.2 16 3.1 3.1 6.5-6.8" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   }
 
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-      <path d="M8.2 14.9 14.9 8.2a3.4 3.4 0 0 1 4.8 4.8L13 19.8A3.4 3.4 0 0 1 8.2 15Z" stroke="currentColor" strokeWidth="2" />
-      <path d="m11.4 11.6 5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" aria-hidden="true">
+      <path d="M10.2 20.8c-2.1 0-3.8-1.7-3.8-3.8s1.7-3.8 3.8-3.8h1.2v-1.2c0-2.1 1.7-3.8 3.8-3.8S19 9.9 19 12v1.2h1.2c2.1 0 3.8 1.7 3.8 3.8s-1.7 3.8-3.8 3.8H19V22c0 2.1-1.7 3.8-3.8 3.8s-3.8-1.7-3.8-3.8v-1.2h-1.2Z" fill="currentColor" opacity=".15" />
+      <path d="M10.2 20.8c-2.1 0-3.8-1.7-3.8-3.8s1.7-3.8 3.8-3.8h1.2v-1.2c0-2.1 1.7-3.8 3.8-3.8S19 9.9 19 12v1.2h1.2c2.1 0 3.8 1.7 3.8 3.8s-1.7 3.8-3.8 3.8H19V22c0 2.1-1.7 3.8-3.8 3.8s-3.8-1.7-3.8-3.8v-1.2h-1.2Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M16 12.5v9M11.5 17h9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
 };
@@ -73,7 +102,7 @@ const IngredientSection = () => {
                 key={ingredient.name}
                 className="flex items-center gap-3 rounded-2xl border border-blue-100 bg-white p-4 shadow-[0_10px_28px_rgba(15,23,42,0.06)]"
               >
-                <div className="grid h-11 w-11 flex-shrink-0 place-items-center rounded-2xl bg-blue-50 text-blue-700 ring-1 ring-blue-100">
+                <div className={`grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-gradient-to-br shadow-sm ring-1 ${ingredient.iconClass}`}>
                   <IngredientIcon type={ingredient.icon} />
                 </div>
                 <div>
