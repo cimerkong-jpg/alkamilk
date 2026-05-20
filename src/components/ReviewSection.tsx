@@ -62,13 +62,13 @@ const ReviewSection = () => {
         </div>
 
         {/* Premium User Story Carousel */}
-        <div className="mb-9">
-          <div className="mb-4 flex items-end justify-between gap-4">
+        <div className="mb-8">
+          <div className="mb-3 flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">
                 Real customer stories
               </p>
-              <h3 className="mt-1 text-xl font-bold text-gray-900 md:text-2xl">
+              <h3 className="mt-1 text-lg font-bold text-gray-900 md:text-2xl">
                 Hình ảnh thật kèm cảm nhận sau khi dùng
               </h3>
             </div>
@@ -78,40 +78,39 @@ const ReviewSection = () => {
           </div>
 
           <div className="-mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex snap-x snap-mandatory gap-4 md:gap-5">
+            <div className="flex snap-x snap-mandatory gap-3 md:gap-4">
               {reviewHighlights.map((review, index) => (
                 <article
                   key={review.imageSrc}
-                  className="group relative min-w-[82%] snap-start overflow-hidden rounded-[1.65rem] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)] ring-1 ring-amber-100/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.16)] sm:min-w-[46%] lg:min-w-[31.5%]"
+                  className="group relative min-w-[76%] snap-start rounded-[1.65rem] bg-white p-3 shadow-[0_14px_34px_rgba(15,23,42,0.10)] ring-1 ring-amber-100/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.14)] sm:min-w-[42%] lg:min-w-[28.5%]"
                 >
-                  <div className="relative overflow-hidden bg-amber-50">
+                  <div className="relative overflow-hidden rounded-[999px] bg-amber-50 shadow-inner ring-1 ring-amber-100">
                     <img
                       src={review.imageSrc}
                       alt={`Ảnh người dùng thực ${review.name}`}
-                      className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
+                      className="aspect-[2.05/1] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       loading={index < 2 ? 'eager' : 'lazy'}
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
-                    <div className="absolute left-4 top-4 rounded-full bg-white/92 px-3 py-1.5 text-xs font-bold text-gray-900 shadow-lg backdrop-blur-md">
-                      ✅ Người dùng thực
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="inline-flex rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
-                        {review.tag}
-                      </p>
-                    </div>
                   </div>
 
-                  <div className="space-y-4 p-4 md:p-5">
-                    <blockquote className="text-[15px] font-semibold leading-relaxed text-gray-900 md:text-base">
+                  <div className="space-y-3 px-1 pt-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 ring-1 ring-emerald-100">
+                        ✅ Người dùng thực
+                      </span>
+                      <span className="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700 ring-1 ring-red-100">
+                        {review.tag}
+                      </span>
+                    </div>
+                    <blockquote className="text-sm font-semibold leading-relaxed text-gray-900 md:text-[15px]">
                       "{review.quote}"
                     </blockquote>
-                    <div className="flex items-center justify-between border-t border-amber-100 pt-3">
+                    <div className="flex items-center justify-between border-t border-amber-100 pt-2.5">
                       <div>
                         <p className="font-bold text-gray-900">{review.name}</p>
                         <p className="text-sm text-gray-500">📍 {review.location}</p>
                       </div>
-                      <div className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700 ring-1 ring-amber-200">
+                      <div className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700 ring-1 ring-amber-200">
                         5.0 ★
                       </div>
                     </div>
