@@ -114,11 +114,7 @@ const ComboSection = () => {
                   </div>
                 )}
 
-                {variant === 'conversion' ? (
-                  <div className="rounded-xl bg-gray-950 px-4 py-3 text-center text-xs font-bold leading-relaxed text-white">
-                    Combo để tham khảo. Team sẽ tư vấn gói phù hợp sau khi xem tình trạng của bạn.
-                  </div>
-                ) : (
+                {variant !== 'conversion' && (
                   <button
                     onClick={() => handleOrderClick(combo)}
                     className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-sm font-black transition-all shadow-lg active:scale-[0.98] ${
