@@ -1,4 +1,4 @@
-import ingredientImage from '../assets/thành phần.png';
+import ingredientImage from '../assets/ingredient-composition.png';
 
 const keyIngredients = [
   {
