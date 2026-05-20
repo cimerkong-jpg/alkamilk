@@ -114,16 +114,22 @@ const ComboSection = () => {
                   </div>
                 )}
 
-                <button
-                  onClick={() => handleOrderClick(combo)}
-                  className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-sm font-black transition-all shadow-lg active:scale-[0.98] ${
-                    combo.isBestSeller
-                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800'
-                      : 'bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700'
-                  }`}
-                >
-                  {variant === 'alkamilk-sale' ? 'Chọn combo này' : variant === 'conversion' ? 'Đăng ký tư vấn' : 'Nhắn tin đặt combo'}
-                </button>
+                {variant === 'conversion' ? (
+                  <div className="rounded-xl bg-gray-950 px-4 py-3 text-center text-xs font-bold leading-relaxed text-white">
+                    Combo để tham khảo. Team sẽ tư vấn gói phù hợp sau khi xem tình trạng của bạn.
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleOrderClick(combo)}
+                    className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-sm font-black transition-all shadow-lg active:scale-[0.98] ${
+                      combo.isBestSeller
+                        ? 'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800'
+                        : 'bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700'
+                    }`}
+                  >
+                    {variant === 'alkamilk-sale' ? 'Chọn combo này' : 'Nhắn tin đặt combo'}
+                  </button>
+                )}
               </div>
             </div>
           ))}

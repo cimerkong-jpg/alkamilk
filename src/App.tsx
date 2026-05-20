@@ -8,8 +8,29 @@ import ComboSection from './components/ComboSection';
 import TrustSection from './components/TrustSection';
 import FAQSection from './components/FAQSection';
 import FinalCTA from './components/FinalCTA';
-import LeadForms from './components/LeadForms';
+import LeadForms, { ConsultationForm } from './components/LeadForms';
 import FloatingCTA from './components/FloatingCTA';
+import { getLandingVariant } from './landingVariant';
+
+type ConversionLeadPromptProps = {
+  sourceLabel: string;
+  title: string;
+  description: string;
+};
+
+const ConversionLeadPrompt = ({ sourceLabel, title, description }: ConversionLeadPromptProps) => {
+  if (getLandingVariant() !== 'conversion') return null;
+
+  return (
+    <ConsultationForm
+      compact
+      anchorId={`lead-form-${sourceLabel}`}
+      sourceLabel={sourceLabel}
+      title={title}
+      description={description}
+    />
+  );
+};
 
 function App() {
   return (
@@ -21,9 +42,19 @@ function App() {
       <main>
         <HeroSection />
         <PainPoints />
+        <ConversionLeadPrompt
+          sourceLabel="after-symptoms"
+          title="Bạn đang đau gối, đau lưng hoặc đứng lâu bị mỏi?"
+          description="Để lại số điện thoại, team tư vấn miễn phí theo tình trạng trước khi bạn chọn combo."
+        />
         <ComboSection />
         <IngredientSection />
         <LiveProofSection />
+        <ConversionLeadPrompt
+          sourceLabel="after-live"
+          title="Muốn nhân viên gọi lại tư vấn cách dùng?"
+          description="Chỉ cần để lại tình trạng và số điện thoại. Không cần đặt hàng ngay."
+        />
         <ReviewSection />
         <TrustSection />
         <FAQSection />

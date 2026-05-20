@@ -1,8 +1,11 @@
 import milkGlassImage from '../assets/Untitled-2.pngda.png';
 import productCanImage from '../assets/z7581638795275_3eb265c3326ec71be9a0b41408d8d40c.pngda.png';
-import { getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
+import { getLandingVariant, getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
 
 const FinalCTA = () => {
+  const variant = getLandingVariant();
+  const isConversion = variant === 'conversion';
+
   const handleChatClick = () => {
     handleLandingAction('Quan tâm CTA cuối trang AlkaMilk');
   };
@@ -13,15 +16,17 @@ const FinalCTA = () => {
         <div className="grid items-center gap-4 p-5 text-white md:grid-cols-[1fr_0.75fr] md:p-7">
           <div>
             <p className="mb-2 inline-flex rounded-full bg-white/14 px-3 py-1 text-xs font-black ring-1 ring-white/20">
-              โปรวันนี้: ซื้อ 4 แถม 2
+              {isConversion ? 'ปรึกษาฟรีก่อนเลือก combo' : 'โปรวันนี้: ซื้อ 4 แถม 2'}
             </p>
             <h2 className="text-2xl font-black leading-tight md:text-4xl">
-              Muốn hỏi combo phù hợp?
+              {isConversion ? 'Để team tư vấn tình trạng của bạn' : 'Muốn hỏi combo phù hợp?'}
               <br />
-              ทักแชทตอนนี้
+              {isConversion ? 'ก่อน khi quyết địnhซื้อ' : 'ทักแชทตอนนี้'}
             </h2>
             <p className="mt-3 text-sm font-medium leading-relaxed text-red-50 md:text-base">
-              Team trả lời nhanh, tư vấn cách dùng và hỗ trợ giao hàng tại Đài Loan.
+              {isConversion
+                ? 'Để lại số điện thoại, nhân viên sẽ gọi/nhắn lại tư vấn miễn phí theo tình trạng thực tế.'
+                : 'Team trả lời nhanh, tư vấn cách dùng và hỗ trợ giao hàng tại Đài Loan.'}
             </p>
             <button
               onClick={handleChatClick}

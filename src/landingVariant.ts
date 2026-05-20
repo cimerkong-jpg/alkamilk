@@ -24,7 +24,7 @@ export const getMessengerUrl = (message = 'Quan tâm AlkaMilk Bontin-MK7') => {
 export const getPrimaryCtaLabel = () => {
   const variant = getLandingVariant();
 
-  if (variant === 'conversion') return 'Đăng ký tư vấn';
+  if (variant === 'conversion') return 'Nhận tư vấn miễn phí';
   if (variant === 'alkamilk-sale') return 'Đặt combo ngay';
 
   return 'Nhắn Messenger nhận ưu đãi';
@@ -33,7 +33,7 @@ export const getPrimaryCtaLabel = () => {
 export const getBottomCtaLabel = () => {
   const variant = getLandingVariant();
 
-  if (variant === 'conversion') return 'รับคำปรึกษา';
+  if (variant === 'conversion') return 'ปรึกษาฟรี';
   if (variant === 'alkamilk-sale') return 'สั่งซื้อ';
 
   return 'ทักแชท';
@@ -42,7 +42,7 @@ export const getBottomCtaLabel = () => {
 export const getBottomHeadline = () => {
   const variant = getLandingVariant();
 
-  if (variant === 'conversion') return 'กรอกเบอร์ให้ทีมโทรกลับ';
+  if (variant === 'conversion') return 'ปรึกษาฟรีตามอาการ';
   if (variant === 'alkamilk-sale') return 'เลือก combo แล้วให้ทีมยืนยัน';
 
   return 'ซื้อ 4 แถม 2';
@@ -51,7 +51,7 @@ export const getBottomHeadline = () => {
 export const getBottomSubline = () => {
   const variant = getLandingVariant();
 
-  if (variant === 'conversion') return 'แจ้งอาการ + เบอร์โทร';
+  if (variant === 'conversion') return 'ฝากเบอร์ให้ทีมติดต่อกลับ';
   if (variant === 'alkamilk-sale') return 'ลงทะเบียนสั่งซื้อให้ครบ';
 
   return 'รับคำแนะนำก่อนสั่งซื้อ';
