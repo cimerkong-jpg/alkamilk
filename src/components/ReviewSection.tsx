@@ -61,15 +61,15 @@ const ReviewSection = () => {
           </p>
         </div>
 
-        {/* Premium User Story Carousel */}
+        {/* Premium Testimonial Reel */}
         <div className="mb-8">
           <div className="mb-3 flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">
-                Real customer stories
+                รีวิวจากลูกค้าจริง
               </p>
               <h3 className="mt-1 text-lg font-bold text-gray-900 md:text-2xl">
-                Hình ảnh thật kèm cảm nhận sau khi dùng
+                Review thật từ khách hàng đang sử dụng
               </h3>
             </div>
             <p className="hidden text-sm font-medium text-gray-500 sm:block">
@@ -82,26 +82,25 @@ const ReviewSection = () => {
               {reviewHighlights.map((review, index) => (
                 <article
                   key={review.imageSrc}
-                  className="group relative min-w-[76%] snap-start rounded-[1.65rem] bg-white p-3 shadow-[0_14px_34px_rgba(15,23,42,0.10)] ring-1 ring-amber-100/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.14)] sm:min-w-[42%] lg:min-w-[28.5%]"
+                  className="group relative min-w-[80%] snap-start rounded-[1.45rem] bg-white p-3 shadow-[0_14px_34px_rgba(15,23,42,0.10)] ring-1 ring-amber-100/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.14)] sm:min-w-[45%] lg:min-w-[30.5%]"
                 >
-                  <div className="relative overflow-hidden rounded-[999px] bg-amber-50 shadow-inner ring-1 ring-amber-100">
+                  <div className="relative overflow-hidden rounded-[1.2rem] bg-amber-50 ring-1 ring-amber-100">
                     <img
                       src={review.imageSrc}
                       alt={`Ảnh người dùng thực ${review.name}`}
-                      className="aspect-[2.05/1] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
                       loading={index < 2 ? 'eager' : 'lazy'}
                     />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/45 to-transparent" />
+                    <div className="absolute bottom-3 left-3 rounded-full bg-white/94 px-3 py-1.5 text-[11px] font-bold text-gray-900 shadow-md backdrop-blur-md">
+                      ✅ Ảnh thật từ khách hàng
+                    </div>
                   </div>
 
-                  <div className="space-y-3 px-1 pt-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 ring-1 ring-emerald-100">
-                        ✅ Người dùng thực
-                      </span>
-                      <span className="rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700 ring-1 ring-red-100">
-                        {review.tag}
-                      </span>
-                    </div>
+                  <div className="space-y-3 px-1 pt-3.5">
+                    <p className="inline-flex rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-700 ring-1 ring-red-100">
+                      {review.tag}
+                    </p>
                     <blockquote className="text-sm font-semibold leading-relaxed text-gray-900 md:text-[15px]">
                       "{review.quote}"
                     </blockquote>
