@@ -19,10 +19,10 @@ function App() {
       {/* Main Content */}
       <main>
         <HeroSection />
+        <PainPoints />
         <ComboSection />
         <LiveProofSection />
         <ReviewSection />
-        <PainPoints />
         <IngredientSection />
         <TrustSection />
         <FAQSection />
