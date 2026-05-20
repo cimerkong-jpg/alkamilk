@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { reviews } from '../data';
 
 const reviewHighlights = [
@@ -48,7 +48,26 @@ const reviewHighlights = [
 
 const ReviewSection = () => {
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const reviewCardsRef = useRef<HTMLDivElement>(null);
   const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 4);
+
+  const handleToggleReviews = () => {
+    if (!showAllReviews) {
+      setShowAllReviews(true);
+      return;
+    }
+
+    setShowAllReviews(false);
+
+    window.setTimeout(() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      reviewCardsRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    }, 0);
+  };
 
   return (
     <section id="reviews" className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-amber-50 to-white">
@@ -66,7 +85,7 @@ const ReviewSection = () => {
         </div>
 
         {/* Premium Testimonial Reel */}
-        <div className="mb-8">
+        <div ref={reviewCardsRef} className="mb-8 scroll-mt-4 md:scroll-mt-6">
           <div className="mb-3 flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">
@@ -200,7 +219,7 @@ const ReviewSection = () => {
             <div className="mt-5 text-center">
               <button
                 type="button"
-                onClick={() => setShowAllReviews((current) => !current)}
+                onClick={handleToggleReviews}
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-red-100 bg-white px-5 text-sm font-bold text-red-600 shadow-sm transition-all hover:border-red-200 hover:bg-red-50 active:scale-95"
                 aria-expanded={showAllReviews}
               >
