@@ -147,9 +147,6 @@ const ReviewSection = () => {
               <h3 className="text-lg font-bold text-gray-900 md:text-xl">
                 Khách hàng nói gì sau khi dùng?
               </h3>
-              <p className="text-sm text-gray-500">
-                Hiển thị {visibleReviews.length}/{reviews.length} review thật
-              </p>
             </div>
             <div className="hidden rounded-full bg-white px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm ring-1 ring-amber-100 sm:block">
               4.8/5 từ người dùng
@@ -207,7 +204,7 @@ const ReviewSection = () => {
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-red-100 bg-white px-5 text-sm font-bold text-red-600 shadow-sm transition-all hover:border-red-200 hover:bg-red-50 active:scale-95"
                 aria-expanded={showAllReviews}
               >
-                {showAllReviews ? 'Thu gọn review' : `Xem thêm ${reviews.length - 4} review`}
+                {showAllReviews ? 'Thu gọn review' : 'Xem thêm review'}
               </button>
             </div>
           )}
