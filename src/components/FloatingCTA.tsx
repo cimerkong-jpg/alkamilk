@@ -22,7 +22,7 @@ const FloatingCTA = () => {
   return (
     <>
       {/* Floating Messenger Button - Primary */}
-      <div className="fixed bottom-20 right-4 z-50">
+      <div className="fixed bottom-6 right-4 z-50 hidden md:block">
         <button
           onClick={handleMessengerClick}
           className="group relative flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#0084FF] text-white shadow-[0_8px_24px_rgba(0,132,255,0.35)] ring-8 ring-[#0084FF]/12 transition hover:scale-105 hover:bg-[#0078E8] active:scale-95"

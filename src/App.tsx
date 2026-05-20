@@ -21,9 +21,9 @@ function App() {
         <HeroSection />
         <PainPoints />
         <ComboSection />
+        <IngredientSection />
         <LiveProofSection />
         <ReviewSection />
-        <IngredientSection />
         <TrustSection />
         <FAQSection />
         <FinalCTA />
