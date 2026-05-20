@@ -1,70 +1,50 @@
-import { ingredients } from '../data';
+const keyIngredients = [
+  { name: 'MK7', description: 'ช่วยพาแคลเซียมเข้าสู่กระดูก' },
+  { name: 'Aquamin F', description: 'แคลเซียมจากสาหร่ายทะเล' },
+  { name: 'Ovomet', description: 'ดูแลข้อต่อและเส้นเอ็น' },
+  { name: 'Polycan', description: 'เสริมการดูแลร่างกาย' },
+];
 
 const IngredientSection = () => {
   return (
-    <section className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-blue-50 to-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Header - Simple & Clear */}
-        <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Không chỉ là
-            <span className="text-red-600"> canxi thông thường</span>
+    <section className="px-4 py-8 md:py-12 bg-gradient-to-b from-white via-blue-50 to-white">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-6 text-center">
+          <p className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-red-600">
+            Premium formula
+          </p>
+          <h2 className="text-2xl font-black leading-tight text-gray-950 md:text-4xl">
+            สูตรสำหรับคนทำงานหนักในไต้หวัน
           </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Công thức đặc biệt 6 thành phần quan trọng
-            <br />
-            Để chăm sóc xương khớp toàn diện
+          <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-relaxed text-gray-600 md:text-base">
+            Công thức Canxi + MK7 kết hợp các thành phần hỗ trợ xương khớp, gọn hơn nhưng đủ lý do để hỏi tư vấn.
           </p>
         </div>
 
-        {/* Ingredient Image */}
-        <div className="mb-8">
-          <img 
-            src="/src/assets/thành phần.png" 
-            alt="Ingredients" 
-            className="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl"
-            loading="lazy"
-          />
-        </div>
+        <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+          <div className="overflow-hidden rounded-[1.5rem] bg-white shadow-[0_22px_60px_rgba(15,23,42,0.10)] ring-1 ring-blue-100">
+            <img
+              src="/src/assets/thành phần.png"
+              alt="Thành phần AlkaMilk Bontin-MK7"
+              className="w-full object-cover"
+              loading="lazy"
+            />
+          </div>
 
-        {/* Ingredient Cards - Icon-Based, Mobile Friendly */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {ingredients.map((ingredient) => (
-            <div
-              key={ingredient.id}
-              className="bg-white rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-blue-100 hover:border-blue-300 transform hover:scale-[1.02]"
-            >
-              {/* Large Icon */}
-              <div className="text-5xl md:text-6xl mb-3 text-center">{ingredient.icon}</div>
-              
-              {/* Name */}
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 text-center">
-                {ingredient.name}
-              </h3>
-              <p className="text-sm text-gray-500 mb-3 text-center font-semibold">
-                {ingredient.nameEn}
-              </p>
-              
-              {/* Simple Benefit */}
-              <p className="text-sm md:text-base text-gray-700 text-center leading-relaxed">
-                {ingredient.description}
-              </p>
+          <div className="space-y-3">
+            {keyIngredients.map((ingredient) => (
+              <div
+                key={ingredient.name}
+                className="rounded-2xl border border-blue-100 bg-white p-4 shadow-[0_10px_28px_rgba(15,23,42,0.06)]"
+              >
+                <p className="text-lg font-black text-gray-950">{ingredient.name}</p>
+                <p className="mt-1 text-sm font-medium text-gray-600">{ingredient.description}</p>
+              </div>
+            ))}
+
+            <div className="rounded-2xl bg-gradient-to-r from-red-600 to-red-700 p-4 text-white shadow-lg">
+              <p className="text-sm font-bold">500+ người đã hỏi tư vấn và đặt dùng tại Đài Loan</p>
             </div>
-          ))}
-        </div>
-
-        {/* Simple CTA */}
-        <div className="mt-8 md:mt-10 text-center">
-          <div className="bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl p-6 md:p-8 border-2 border-blue-300 max-w-3xl mx-auto">
-            <p className="text-lg md:text-xl font-bold text-gray-900 mb-4">
-              ✨ Công thức đầy đủ, chăm sóc toàn diện, không cần uống nhiều loại
-            </p>
-            <button
-              onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-10 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-lg font-bold hover:from-blue-700 hover:to-blue-800 transition-all shadow-xl transform hover:scale-105 active:scale-95"
-            >
-              📩 Nhắn tin hỏi thêm
-            </button>
           </div>
         </div>
       </div>

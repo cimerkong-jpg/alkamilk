@@ -143,13 +143,6 @@ export const combos: Combo[] = [
     savingsPercent: 33,
   },
   {
-    id: 3,
-    buy: 6,
-    free: 3,
-    isBestSeller: false,
-    savingsPercent: 33,
-  },
-  {
     id: 4,
     buy: 10,
     free: 5,
@@ -161,28 +154,18 @@ export const combos: Combo[] = [
 export const faqs: FAQ[] = [
   {
     id: 1,
-    question: 'Uống mỗi ngày bao nhiêu ly?',
-    answer: 'Nên uống 1-2 ly mỗi ngày, uống sau bữa sáng hoặc trước khi ngủ để hấp thu tốt nhất',
+    question: 'กินยังไง?',
+    answer: 'แนะนำชงดื่มวันละ 1-2 แก้ว หลังอาหารหรือก่อนนอน เพื่อดูแลร่างกายอย่างต่อเนื่อง',
   },
   {
     id: 2,
-    question: 'Phù hợp với ai?',
-    answer: 'Phù hợp với người làm việc nặng, đứng lâu, đi nhiều, hoặc muốn chăm sóc xương khớp, đặc biệt từ 30 tuổi trở lên',
+    question: 'ส่งไต้หวันไหม?',
+    answer: 'ส่งถึงไต้หวันได้ ทีมงานแจ้งรายละเอียดโปรและการจัดส่งผ่าน Messenger',
   },
   {
     id: 3,
-    question: 'Phải uống bao lâu?',
-    answer: 'Nên uống liên tục ít nhất 1-2 tháng để cơ thể nhận đủ dinh dưỡng đều đặn',
-  },
-  {
-    id: 4,
-    question: 'Có khuyến mãi gì hiện tại?',
-    answer: 'Hiện có khuyến mãi đặc biệt Mua 4 Tặng 2 - Tiết kiệm nhất! Nhắn tin để hỏi thêm về khuyến mãi',
-  },
-  {
-    id: 5,
-    question: 'Đặt hàng như thế nào?',
-    answer: 'Rất đơn giản! Bấm nút "Nhắn tin nhận khuyến mãi" và team sẽ hỗ trợ bạn 24/7',
+    question: 'เหมาะกับใคร?',
+    answer: 'เหมาะกับคนทำงานหนัก ยืนนาน เดินเยอะ หรือผู้ที่ต้องการดูแลกระดูกและข้อเป็นประจำ',
   },
 ];
 

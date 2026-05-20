@@ -1,81 +1,50 @@
-import { painPoints } from '../data';
-import type { PainPoint } from '../types';
-
-const painIconSrc: Record<PainPoint['icon'], string> = {
-  knee: '/pain-icons/DAUKHOPGOI.png',
-  back: '/pain-icons/DAULUNG.png',
-  fatigue: '/pain-icons/MOICOTICHTU.png',
-  standing: '/pain-icons/DUNGLAUNOIMET.png',
-  wakePain: '/pain-icons/THUCDAUDAUNGUOI.png',
-  walking: '/pain-icons/DILAIKHOKHAN.png',
-};
+const symptomImages = [
+  { src: '/pain-icons/DAULUNG.png', label: 'ปวดหลัง' },
+  { src: '/pain-icons/DAUKHOPGOI.png', label: 'ปวดเข่า' },
+  { src: '/pain-icons/MOICOTICHTU.png', label: 'เมื่อยสะสม' },
+  { src: '/pain-icons/DILAIKHOKHAN.png', label: 'เดินลำบาก' },
+];
 
 const PainPoints = () => {
   return (
-    <section className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-red-50 to-white">
-      <div className="max-w-5xl mx-auto">
-        {/* Emotional Header */}
-        <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-            Bạn có những triệu chứng này
-            <span className="text-red-600"> thường xuyên không?</span>
-          </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Nếu bạn làm việc nặng, đứng lâu, đi nhiều
-            <br className="hidden sm:block" />
-            <span className="font-semibold text-red-600">Những triệu chứng này có thể xảy ra</span>
-          </p>
-        </div>
+    <section className="px-4 py-8 md:py-10 bg-gradient-to-b from-white via-red-50 to-white">
+      <div className="mx-auto max-w-5xl">
+        <div className="overflow-hidden rounded-[1.75rem] border border-red-100 bg-white shadow-[0_22px_60px_rgba(127,29,29,0.10)]">
+          <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
+            <div className="bg-gradient-to-br from-red-600 to-red-700 p-5 text-white md:p-7">
+              <p className="mb-3 inline-flex rounded-full bg-white/14 px-3 py-1 text-xs font-bold ring-1 ring-white/20">
+                สำหรับคนทำงานหนักในไต้หวัน
+              </p>
+              <h2 className="text-2xl font-black leading-tight md:text-4xl">
+                Đứng lâu, đau gối, đau lưng?
+              </h2>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-red-50 md:text-base">
+                Nếu cơ thể bắt đầu mỏi nhiều hơn sau mỗi ngày làm việc, hãy bắt đầu chăm sóc xương khớp sớm hơn.
+              </p>
+              <button
+                onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
+                className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-5 text-sm font-black text-red-600 shadow-lg transition-all active:scale-[0.98] sm:w-auto"
+              >
+                Nhắn tin hỏi cách dùng
+              </button>
+            </div>
 
-        {/* Pain Cards - Mobile Optimized, Larger Touch Targets */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-8">
-          {painPoints.map((pain) => (
-            <div
-              key={pain.id}
-              className="bg-white rounded-2xl px-3 py-4 sm:p-5 md:p-6 shadow-lg hover:shadow-xl transition-all border-2 border-red-100 hover:border-red-300 transform hover:scale-[1.02]"
-            >
-              <div className="mb-3 flex justify-center">
-                <div className="flex h-[115px] w-full max-w-[154px] items-center justify-center rounded-2xl bg-red-50 p-2 ring-1 ring-red-100 sm:h-[134px] sm:max-w-[173px] md:h-[154px] md:max-w-[192px]">
+            <div className="grid grid-cols-2 gap-2 bg-red-50/60 p-3 md:p-4">
+              {symptomImages.map((symptom) => (
+                <div key={symptom.src} className="relative overflow-hidden rounded-2xl bg-white">
                   <img
-                    src={painIconSrc[pain.icon]}
-                    alt=""
-                    className="h-full w-full object-cover rounded-xl"
+                    src={symptom.src}
+                    alt={symptom.label}
+                    className="aspect-[1.22/1] w-full object-cover"
                     loading="lazy"
                   />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-2">
+                    <p className="text-xs font-bold text-white md:text-sm">{symptom.label}</p>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Clear, Emotional Text */}
-              <h3 className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 text-center leading-snug">
-                {pain.text}
-              </h3>
+              ))}
             </div>
-          ))}
-        </div>
-
-        {/* Emotional CTA Box */}
-        <div className="bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-3xl p-6 md:p-8 text-center shadow-2xl">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4 leading-tight">
-            Đừng để triệu chứng trở nên tệ hơn
-          </h3>
-          <p className="text-base md:text-lg text-red-100 mb-5 md:mb-6 leading-relaxed">
-            Bắt đầu chăm sóc xương khớp từ hôm nay
-            <br />
-            <span className="font-semibold text-white">Trước khi quá muộn</span>
-          </p>
-          <button
-            onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
-            className="bg-white text-red-600 px-8 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-lg font-bold hover:bg-yellow-50 transition-all shadow-xl transform hover:scale-105 active:scale-95 w-full sm:w-auto"
-          >
-            📩 Nhắn tin tư vấn miễn phí
-          </button>
-        </div>
-
-        {/* Social Proof Subtle */}
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
-            💬 <span className="font-semibold text-gray-800">Nhiều người Việt tại Đài Loan</span> đã bắt đầu chăm sóc bản thân
-          </p>
+          </div>
         </div>
       </div>
     </section>

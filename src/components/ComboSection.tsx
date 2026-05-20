@@ -8,15 +8,15 @@ const ComboSection = () => {
   };
 
   return (
-    <section className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-red-50 to-white relative overflow-hidden">
+    <section className="py-8 md:py-12 px-4 bg-gradient-to-b from-white via-red-50 to-white relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-red-200 rounded-full blur-3xl opacity-20"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-200 rounded-full blur-3xl opacity-20"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header - FOMO Style */}
-        <div className="text-center mb-8 md:mb-10">
-          <div className="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
+        <div className="text-center mb-6 md:mb-8">
+          <div className="inline-block bg-red-600 text-white px-5 py-2 rounded-full text-xs font-bold mb-3 animate-pulse md:text-sm">
             🔥 Khuyến mãi đặc biệt - Số lượng có hạn!
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -28,18 +28,8 @@ const ComboSection = () => {
           </p>
         </div>
 
-        {/* Nutrition Info Image */}
-        <div className="mb-8">
-          <img 
-            src="/src/assets/ddinh duong.png" 
-            alt="Nutrition Information" 
-            className="w-full max-w-3xl mx-auto rounded-2xl shadow-2xl"
-            loading="lazy"
-          />
-        </div>
-
         {/* Combo Cards - Compact Premium */}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 mb-8">
+        <div className="grid gap-3 md:grid-cols-3 md:gap-4">
           {combos.map((combo) => (
             <div
               key={combo.id}
@@ -136,32 +126,10 @@ const ComboSection = () => {
           ))}
         </div>
 
-        {/* Additional Benefits */}
-        <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-3xl p-6 md:p-8 text-center border-2 border-purple-200 shadow-xl">
-          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-            🎁 Quà tặng đặc biệt khi đặt hôm nay
-          </h3>
-          <div className="flex flex-wrap gap-3 justify-center mb-4">
-            <span className="bg-white px-5 py-3 rounded-full text-sm md:text-base font-bold text-gray-700 shadow-md border-2 border-purple-200">
-              📦 Giao hàng miễn phí
-            </span>
-            <span className="bg-white px-5 py-3 rounded-full text-sm md:text-base font-bold text-gray-700 shadow-md border-2 border-purple-200">
-              🎁 Quà tặng đặc biệt
-            </span>
-            <span className="bg-white px-5 py-3 rounded-full text-sm md:text-base font-bold text-gray-700 shadow-md border-2 border-purple-200">
-              💬 Tư vấn miễn phí 24/7
-            </span>
-          </div>
-          <p className="text-sm text-gray-600">
-            ⏰ Khuyến mãi có số lượng giới hạn, đặt ngay hôm nay!
-          </p>
-        </div>
-
-        {/* Social Proof */}
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
-            🔥 <span className="font-bold text-red-600">Nhiều người đặt combo Mua 4 Tặng 2 nhất</span> vì tiết kiệm nhất!
-          </p>
+        <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs font-bold text-gray-700">
+          <span className="rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-red-100">🎁 ส่งฟรี</span>
+          <span className="rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-red-100">🎁 มีของแถม</span>
+          <span className="rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-red-100">💬 ทีมตอบแชทไทย</span>
         </div>
       </div>
     </section>
