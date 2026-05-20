@@ -101,10 +101,15 @@ const HeroSection = () => {
                 <p className="text-sm font-bold">🔥 Bán chạy!</p>
               </div>
 
-              {/* Floating Badge - Social Proof */}
-              <div className="mt-3 w-full bg-white px-4 py-3 rounded-xl shadow-lg border border-amber-300 md:absolute md:-bottom-3 md:-left-3 md:mt-0 md:w-auto md:px-5 md:shadow-xl">
-                <p className="text-xs text-gray-600 mb-0.5">Đã tin dùng</p>
-                <p className="text-xl font-bold text-red-600">500+ người</p>
+              {/* Social Proof Notify */}
+              <div className="mt-3 flex items-center gap-2 rounded-full bg-white/92 px-3.5 py-2 text-left shadow-md ring-1 ring-red-100 backdrop-blur md:absolute md:bottom-3 md:left-3 md:mt-0 md:bg-white/86">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-50 text-sm font-black text-red-600">
+                  1
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-gray-500 leading-none">กำลังมีคนสนใจ</p>
+                  <p className="mt-1 text-sm font-bold text-gray-900 leading-none">500+ người đã tin dùng</p>
+                </div>
               </div>
             </div>
           </div>
