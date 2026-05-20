@@ -229,33 +229,71 @@ const ReviewSection = () => {
           )}
         </div>
 
-        {/* Social Proof Stats - Mobile Optimized */}
-        <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-3xl mx-auto mb-8">
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-4 md:p-6 text-center shadow-xl">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-1">500+</div>
-            <p className="text-red-100 text-xs md:text-sm font-semibold">Khách hàng tại Đài Loan</p>
-          </div>
-          <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-4 md:p-6 text-center shadow-xl">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-1">4.8⭐</div>
-            <p className="text-amber-100 text-xs md:text-sm font-semibold">Điểm trung bình</p>
-          </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-4 md:p-6 text-center shadow-xl">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-1">95%</div>
-            <p className="text-green-100 text-xs md:text-sm font-semibold">Mua lại</p>
-          </div>
-        </div>
+        {/* Premium Conversion Panel */}
+        <div className="mx-auto max-w-4xl rounded-[1.75rem] border border-red-100/80 bg-white/92 p-4 shadow-[0_24px_70px_rgba(127,29,29,0.10)] backdrop-blur md:p-5">
+          <div className="grid grid-cols-3 divide-x divide-red-100 overflow-hidden rounded-2xl bg-gradient-to-br from-red-50 via-white to-amber-50 ring-1 ring-red-100/80">
+            <div className="px-2 py-4 text-center md:px-5 md:py-5">
+              <div className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-full bg-red-600 text-white shadow-sm md:h-9 md:w-9">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                  <path d="M16 19v-1.5A3.5 3.5 0 0 0 12.5 14h-5A3.5 3.5 0 0 0 4 17.5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M10 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="2" />
+                  <path d="M17 11.5a2.5 2.5 0 0 0 0-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M20 19v-1a3 3 0 0 0-2-2.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <p className="text-2xl font-black tracking-tight text-gray-950 md:text-4xl">500+</p>
+              <p className="mt-1 text-[11px] font-semibold leading-snug text-gray-500 md:text-sm">
+                Khách tại Đài Loan
+              </p>
+            </div>
 
-        {/* CTA - Thumb Friendly */}
-        <div className="text-center">
-          <button
-            onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
-            className="bg-gradient-to-r from-red-600 to-red-700 text-white px-10 md:px-12 py-5 rounded-2xl text-lg md:text-xl font-bold hover:from-red-700 hover:to-red-800 transition-all shadow-2xl hover:shadow-3xl transform hover:scale-105 active:scale-95 w-full sm:w-auto"
-          >
-            📩 Nhắn tin để đặt hàng
-          </button>
-          <p className="mt-4 text-sm text-gray-600">
-            💬 Team trả lời nhanh, chăm sóc tốt, 24 giờ
-          </p>
+            <div className="px-2 py-4 text-center md:px-5 md:py-5">
+              <div className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-full bg-amber-500 text-white shadow-sm md:h-9 md:w-9">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="m12 2.8 2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 16.32l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86L12 2.8Z" />
+                </svg>
+              </div>
+              <p className="text-2xl font-black tracking-tight text-gray-950 md:text-4xl">4.8</p>
+              <p className="mt-1 text-[11px] font-semibold leading-snug text-gray-500 md:text-sm">
+                Điểm hài lòng
+              </p>
+            </div>
+
+            <div className="px-2 py-4 text-center md:px-5 md:py-5">
+              <div className="mx-auto mb-2 grid h-8 w-8 place-items-center rounded-full bg-emerald-600 text-white shadow-sm md:h-9 md:w-9">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                  <path d="M20 7 9.5 17.5 4 12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <p className="text-2xl font-black tracking-tight text-gray-950 md:text-4xl">95%</p>
+              <p className="mt-1 text-[11px] font-semibold leading-snug text-gray-500 md:text-sm">
+                Tiếp tục dùng
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-[1.35rem] bg-gradient-to-r from-red-600 to-red-700 p-1 shadow-[0_18px_42px_rgba(220,38,38,0.28)]">
+            <button
+              onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
+              className="flex min-h-14 w-full items-center justify-center gap-3 rounded-[1.1rem] bg-gradient-to-r from-red-600 to-red-700 px-5 text-base font-black text-white transition-all hover:from-red-700 hover:to-red-800 active:scale-[0.99] md:min-h-16 md:text-xl"
+            >
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-white/16 ring-1 ring-white/20">
+                <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" aria-hidden="true">
+                  <path d="M4.5 6.8h15v10.4h-15V6.8Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                  <path d="m5 7.5 7 5.2 7-5.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              Nhắn tin nhận ưu đãi hôm nay
+            </button>
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-semibold text-gray-500 md:text-sm">
+            <span>Phản hồi nhanh qua Messenger</span>
+            <span className="hidden h-1 w-1 rounded-full bg-gray-300 sm:block" />
+            <span>Tư vấn cách dùng phù hợp</span>
+            <span className="hidden h-1 w-1 rounded-full bg-gray-300 sm:block" />
+            <span>Hỗ trợ khách Việt tại Đài Loan</span>
+          </div>
         </div>
       </div>
     </section>
