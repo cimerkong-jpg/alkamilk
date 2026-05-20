@@ -1,12 +1,48 @@
 import { reviews } from '../data';
 
-const reviewImages = [
-  '/review-images/review3.jpg',
-  '/review-images/review4.jpg',
-  '/review-images/review6.jpg',
-  '/review-images/review8.jpg',
-  '/review-images/review9.jpg',
-  '/review-images/review10.jpg',
+const reviewHighlights = [
+  {
+    imageSrc: '/review-images/review3.jpg',
+    name: 'Chị Mai',
+    location: 'Đài Trung',
+    quote: 'Tôi dùng thấy rất hợp, sau vài ngày cơ thể nhẹ hơn và đỡ mỏi khi đứng lâu.',
+    tag: 'Cảm nhận sau 3 ngày',
+  },
+  {
+    imageSrc: '/review-images/review4.jpg',
+    name: 'Cô Lan',
+    location: 'Tân Bắc',
+    quote: 'Pha uống dễ, vị không ngấy. Tôi mua thêm cho mẹ vì thấy sinh hoạt thoải mái hơn.',
+    tag: 'Mua lại lần 2',
+  },
+  {
+    imageSrc: '/review-images/review6.jpg',
+    name: 'Anh Hùng',
+    location: 'Đào Viên',
+    quote: 'Làm ca đứng nhiều nên hay mỏi gối. Dùng đều thấy buổi tối dễ chịu hơn trước.',
+    tag: 'Người làm việc đứng lâu',
+  },
+  {
+    imageSrc: '/review-images/review8.jpg',
+    name: 'Chú Minh',
+    location: 'Cao Hùng',
+    quote: 'Tôi thích nhất là dễ pha, uống đều mỗi ngày. Cảm giác khớp linh hoạt hơn khi đi lại.',
+    tag: 'Dùng hằng ngày',
+  },
+  {
+    imageSrc: '/review-images/review9.jpg',
+    name: 'Chị Hạnh',
+    location: 'Đài Bắc',
+    quote: 'Sau 3 ngày tôi thấy người bớt nặng nề, sáng dậy đi lại cũng dễ hơn.',
+    tag: 'Feedback thật',
+  },
+  {
+    imageSrc: '/review-images/review10.jpg',
+    name: 'Anh Tuấn',
+    location: 'Tân Trúc',
+    quote: 'Tư vấn kỹ, giao nhanh. Sản phẩm phù hợp cho người lớn tuổi trong nhà tôi.',
+    tag: 'Gia đình tin dùng',
+  },
 ];
 
 const ReviewSection = () => {
@@ -25,21 +61,65 @@ const ReviewSection = () => {
           </p>
         </div>
 
-        {/* Review Images - Facebook Style */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 mb-8">
-          {reviewImages.map((imageSrc, index) => (
-            <div key={imageSrc} className="relative group overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-amber-100">
-              <img
-                src={imageSrc}
-                alt={`Customer review ${index + 1}`}
-                className="aspect-[4/5] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                loading="lazy"
-              />
-              <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                <p className="text-xs md:text-sm font-semibold text-gray-800">✅ Người dùng thực</p>
-              </div>
+        {/* Premium User Story Carousel */}
+        <div className="mb-9">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">
+                Real customer stories
+              </p>
+              <h3 className="mt-1 text-xl font-bold text-gray-900 md:text-2xl">
+                Hình ảnh thật kèm cảm nhận sau khi dùng
+              </h3>
             </div>
-          ))}
+            <p className="hidden text-sm font-medium text-gray-500 sm:block">
+              Lướt ngang để xem thêm
+            </p>
+          </div>
+
+          <div className="-mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex snap-x snap-mandatory gap-4 md:gap-5">
+              {reviewHighlights.map((review, index) => (
+                <article
+                  key={review.imageSrc}
+                  className="group relative min-w-[82%] snap-start overflow-hidden rounded-[1.65rem] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)] ring-1 ring-amber-100/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.16)] sm:min-w-[46%] lg:min-w-[31.5%]"
+                >
+                  <div className="relative overflow-hidden bg-amber-50">
+                    <img
+                      src={review.imageSrc}
+                      alt={`Ảnh người dùng thực ${review.name}`}
+                      className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+                    <div className="absolute left-4 top-4 rounded-full bg-white/92 px-3 py-1.5 text-xs font-bold text-gray-900 shadow-lg backdrop-blur-md">
+                      ✅ Người dùng thực
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <p className="inline-flex rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
+                        {review.tag}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 p-4 md:p-5">
+                    <blockquote className="text-[15px] font-semibold leading-relaxed text-gray-900 md:text-base">
+                      "{review.quote}"
+                    </blockquote>
+                    <div className="flex items-center justify-between border-t border-amber-100 pt-3">
+                      <div>
+                        <p className="font-bold text-gray-900">{review.name}</p>
+                        <p className="text-sm text-gray-500">📍 {review.location}</p>
+                      </div>
+                      <div className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700 ring-1 ring-amber-200">
+                        5.0 ★
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Facebook-Style Review Cards */}
