@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { reviews } from '../data';
 
 const reviewHighlights = [
@@ -46,6 +47,9 @@ const reviewHighlights = [
 ];
 
 const ReviewSection = () => {
+  const [showAllReviews, setShowAllReviews] = useState(false);
+  const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 4);
+
   return (
     <section id="reviews" className="py-10 md:py-14 px-4 bg-gradient-to-b from-white via-amber-50 to-white">
       <div className="max-w-6xl mx-auto">
@@ -136,16 +140,31 @@ const ReviewSection = () => {
           </div>
         </div>
 
-        {/* Facebook-Style Review Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-8">
-          {reviews.map((review) => (
+        {/* Compact Review Cards */}
+        <div className="mb-8">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 md:text-xl">
+                Khách hàng nói gì sau khi dùng?
+              </h3>
+              <p className="text-sm text-gray-500">
+                Hiển thị {visibleReviews.length}/{reviews.length} review thật
+              </p>
+            </div>
+            <div className="hidden rounded-full bg-white px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm ring-1 ring-amber-100 sm:block">
+              4.8/5 từ người dùng
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {visibleReviews.map((review) => (
             <div
               key={review.id}
-              className="bg-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all border border-gray-200"
+              className="rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_10px_28px_rgba(15,23,42,0.08)] transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(15,23,42,0.12)]"
             >
               {/* Header - Facebook Comment Style */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 ring-2 ring-red-100">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-red-100 to-orange-100 ring-2 ring-red-100">
                   <img
                     src={review.avatarUrl}
                     alt={review.name}
@@ -154,27 +173,44 @@ const ReviewSection = () => {
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-gray-900 truncate">{review.name}</h4>
-                  <p className="text-sm text-gray-500 flex items-center gap-1">
+                  <h4 className="truncate font-bold text-gray-900">{review.name}</h4>
+                  <p className="flex items-center gap-1 text-xs text-gray-500">
                     📍 {review.location}
                   </p>
                 </div>
+                <span className="rounded-full bg-amber-50 px-2 py-1 text-[11px] font-bold text-amber-700">
+                  5★
+                </span>
               </div>
 
               {/* Review Text - Natural Feel */}
-              <div className="bg-gray-50 rounded-xl p-4 mb-3">
-                <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+              <div className="mb-3 rounded-xl bg-gray-50 p-3">
+                <p className="line-clamp-4 text-sm leading-relaxed text-gray-700">
                   "{review.text}"
                 </p>
               </div>
 
               {/* Rating */}
               <div className="flex items-center justify-between">
-                <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-                <span className="text-xs text-gray-400">Người dùng thực</span>
+                <div className="text-sm text-yellow-500">★★★★★</div>
+                <span className="text-[11px] font-medium text-gray-400">Verified</span>
               </div>
             </div>
-          ))}
+            ))}
+          </div>
+
+          {reviews.length > 4 && (
+            <div className="mt-5 text-center">
+              <button
+                type="button"
+                onClick={() => setShowAllReviews((current) => !current)}
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-red-100 bg-white px-5 text-sm font-bold text-red-600 shadow-sm transition-all hover:border-red-200 hover:bg-red-50 active:scale-95"
+                aria-expanded={showAllReviews}
+              >
+                {showAllReviews ? 'Thu gọn review' : `Xem thêm ${reviews.length - 4} review`}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Social Proof Stats - Mobile Optimized */}
