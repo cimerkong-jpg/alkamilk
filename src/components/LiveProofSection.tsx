@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
 
-const MESSENGER_URL = 'https://m.me/1160453107144286';
 const LIVE_VIDEO_SRC = '/live-loop.mp4';
 const LIVE_POSTER_SRC = '/live-poster.jpg';
 
@@ -42,7 +42,7 @@ const LiveProofSection = () => {
   }, []);
 
   const handleMessengerClick = () => {
-    window.open(MESSENGER_URL, '_blank', 'noopener,noreferrer');
+    handleLandingAction('Quan tâm live promo AlkaMilk Bontin-MK7');
   };
 
   const handleToggleMute = () => {
@@ -167,7 +167,7 @@ const LiveProofSection = () => {
                 onClick={handleMessengerClick}
                 className="mt-4 min-h-12 w-full rounded-2xl bg-gray-950 px-5 py-3 text-base font-black text-white shadow-lg transition hover:bg-black active:scale-[0.98]"
               >
-                📩 ทักแชทรับโปรโมชั่น
+                {getPrimaryCtaLabel()}
               </button>
 
               <div className="mt-4 grid grid-cols-3 divide-x divide-gray-200 rounded-2xl bg-gray-50 py-3 text-center ring-1 ring-black/5">

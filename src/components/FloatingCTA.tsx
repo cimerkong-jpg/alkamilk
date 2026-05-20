@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getBottomCtaLabel, getBottomHeadline, getBottomSubline, handleLandingAction } from '../landingVariant';
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +15,7 @@ const FloatingCTA = () => {
   }, []);
 
   const handleMessengerClick = () => {
-    window.open('https://m.me/1160453107144286', '_blank');
+    handleLandingAction('Quan tâm combo AlkaMilk Bontin-MK7');
   };
 
   if (!isVisible) return null;
@@ -58,8 +59,8 @@ const FloatingCTA = () => {
               </span>
               <span className="text-[11px] font-semibold text-gray-300">วันนี้</span>
             </div>
-            <p className="truncate text-sm font-black">ซื้อ 4 แถม 2</p>
-            <p className="truncate text-xs font-medium text-gray-300">รับคำแนะนำก่อนสั่งซื้อ</p>
+            <p className="truncate text-sm font-black">{getBottomHeadline()}</p>
+            <p className="truncate text-xs font-medium text-gray-300">{getBottomSubline()}</p>
           </div>
           <button
             onClick={handleMessengerClick}
@@ -68,7 +69,7 @@ const FloatingCTA = () => {
             <svg viewBox="0 0 36 36" aria-hidden="true" className="h-5 w-5" fill="currentColor">
               <path d="M18 3.6C9.8 3.6 3.4 9.6 3.4 17.7c0 4.2 1.7 7.8 4.6 10.3v5.1l5-2.8c1.6.5 3.2.8 5 .8 8.2 0 14.6-6 14.6-14.1S26.2 3.6 18 3.6Zm1.4 18.9-3.7-4-7.2 4 7.9-8.4 3.8 4 7.1-4-7.9 8.4Z" />
             </svg>
-            ทักแชท
+            {getBottomCtaLabel()}
           </button>
         </div>
       </div>

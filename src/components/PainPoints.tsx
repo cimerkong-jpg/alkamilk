@@ -1,3 +1,5 @@
+import { handleLandingAction } from '../landingVariant';
+
 const symptomImages = [
   { src: '/pain-icons/DAULUNG.png', label: 'ปวดหลัง' },
   { src: '/pain-icons/DAUKHOPGOI.png', label: 'ปวดเข่า' },
@@ -22,7 +24,7 @@ const PainPoints = () => {
                 Nếu cơ thể bắt đầu mỏi nhiều hơn sau mỗi ngày làm việc, hãy bắt đầu chăm sóc xương khớp sớm hơn.
               </p>
               <button
-                onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
+                onClick={() => handleLandingAction('Muốn tư vấn cách dùng AlkaMilk')}
                 className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-5 text-sm font-black text-red-600 shadow-lg transition-all active:scale-[0.98] sm:w-auto"
               >
                 Nhắn tin hỏi cách dùng

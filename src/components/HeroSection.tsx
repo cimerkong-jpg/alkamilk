@@ -1,9 +1,10 @@
 import heroImage512 from '../assets/hero-image-512.jpg';
 import heroImage768 from '../assets/hero-image-768.jpg';
+import { getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
 
 const HeroSection = () => {
   const handleCTAClick = () => {
-    window.open('https://m.me/1160453107144286', '_blank');
+    handleLandingAction('Quan tâm ưu đãi AlkaMilk Bontin-MK7');
   };
 
   const handleReviewClick = () => {
@@ -51,7 +52,7 @@ const HeroSection = () => {
                 onClick={handleCTAClick}
                 className="bg-gradient-to-r from-red-600 to-red-700 text-white px-7 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-bold hover:from-red-700 hover:to-red-800 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95 flex-1 sm:flex-initial"
               >
-                📩 Nhắn tin nhận khuyến mãi
+                {getPrimaryCtaLabel()}
               </button>
               <button
                 onClick={handleReviewClick}

@@ -1,9 +1,10 @@
 import milkGlassImage from '../assets/Untitled-2.pngda.png';
 import productCanImage from '../assets/z7581638795275_3eb265c3326ec71be9a0b41408d8d40c.pngda.png';
+import { getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
 
 const FinalCTA = () => {
   const handleChatClick = () => {
-    window.open('https://m.me/1160453107144286', '_blank');
+    handleLandingAction('Quan tâm CTA cuối trang AlkaMilk');
   };
 
   return (
@@ -26,7 +27,7 @@ const FinalCTA = () => {
               onClick={handleChatClick}
               className="mt-5 flex min-h-14 w-full items-center justify-center rounded-2xl bg-white px-5 text-base font-black text-red-600 shadow-xl transition-all active:scale-[0.98] sm:w-auto sm:px-8"
             >
-              Nhắn Messenger nhận ưu đãi
+              {getPrimaryCtaLabel()}
             </button>
           </div>
 

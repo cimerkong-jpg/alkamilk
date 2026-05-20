@@ -1,11 +1,14 @@
 import { combos } from '../data';
 import milkGlassImage from '../assets/Untitled-2.pngda.png';
 import productCanImage from '../assets/z7581638795275_3eb265c3326ec71be9a0b41408d8d40c.pngda.png';
+import { getLandingVariant, handleLandingAction } from '../landingVariant';
 
 const ComboSection = () => {
   const handleOrderClick = (combo: { buy: number; free: number }) => {
-    window.open(`https://m.me/1160453107144286?text=Quan tâm combo Mua ${combo.buy} Tặng ${combo.free}`, '_blank');
+    handleLandingAction(`Quan tâm combo Mua ${combo.buy} Tặng ${combo.free}`);
   };
+
+  const variant = getLandingVariant();
 
   return (
     <section className="py-8 md:py-12 px-4 bg-gradient-to-b from-white via-red-50 to-white relative overflow-hidden">
@@ -119,7 +122,7 @@ const ComboSection = () => {
                       : 'bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700'
                   }`}
                 >
-                  Nhắn tin đặt combo
+                  {variant === 'alkamilk-sale' ? 'Chọn combo này' : variant === 'conversion' ? 'Đăng ký tư vấn' : 'Nhắn tin đặt combo'}
                 </button>
               </div>
             </div>

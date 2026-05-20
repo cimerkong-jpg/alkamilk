@@ -1,6 +1,8 @@
+import { handleLandingAction } from '../landingVariant';
+
 const HeaderPromoBar = () => {
   const handleChatClick = () => {
-    window.open('https://m.me/1160453107144286', '_blank');
+    handleLandingAction('Quan tâm ưu đãi AlkaMilk hôm nay');
   };
 
   return (

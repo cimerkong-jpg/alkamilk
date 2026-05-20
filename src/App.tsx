@@ -8,6 +8,7 @@ import ComboSection from './components/ComboSection';
 import TrustSection from './components/TrustSection';
 import FAQSection from './components/FAQSection';
 import FinalCTA from './components/FinalCTA';
+import LeadForms from './components/LeadForms';
 import FloatingCTA from './components/FloatingCTA';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <ReviewSection />
         <TrustSection />
         <FAQSection />
+        <LeadForms />
         <FinalCTA />
       </main>
 

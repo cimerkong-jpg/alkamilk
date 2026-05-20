@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { reviews } from '../data';
+import { getPrimaryCtaLabel, handleLandingAction } from '../landingVariant';
 
 const reviewHighlights = [
   {
@@ -274,7 +275,7 @@ const ReviewSection = () => {
 
           <div className="mt-4 rounded-[1.35rem] bg-gradient-to-r from-red-600 to-red-700 p-1 shadow-[0_18px_42px_rgba(220,38,38,0.28)]">
             <button
-              onClick={() => window.open('https://m.me/1160453107144286', '_blank')}
+              onClick={() => handleLandingAction('Quan tâm ưu đãi sau khi xem review')}
               className="flex min-h-14 w-full items-center justify-center gap-3 rounded-[1.1rem] bg-gradient-to-r from-red-600 to-red-700 px-5 text-base font-black text-white transition-all hover:from-red-700 hover:to-red-800 active:scale-[0.99] md:min-h-16 md:text-xl"
             >
               <span className="grid h-8 w-8 place-items-center rounded-full bg-white/16 ring-1 ring-white/20">
@@ -283,7 +284,7 @@ const ReviewSection = () => {
                   <path d="m5 7.5 7 5.2 7-5.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
-              Nhắn tin nhận ưu đãi hôm nay
+              {getPrimaryCtaLabel()}
             </button>
           </div>
 
